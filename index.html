@@ -19,7 +19,6 @@
   --success:#30D158;
   --gold:#FF9F0A;
   --sidebar:320px;
-  --radius:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);}
@@ -29,75 +28,25 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 #lyr{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;pointer-events:none;overflow:hidden;}
 .nlb{position:absolute;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.75);text-shadow:0 0 12px rgba(0,0,0,1),0 0 24px rgba(0,0,0,1);white-space:nowrap;pointer-events:none;}
 
-#sb{
-  position:absolute;right:0;top:0;bottom:0;width:var(--sidebar);
-  background:var(--surface);
-  backdrop-filter:blur(40px) saturate(180%);
-  -webkit-backdrop-filter:blur(40px) saturate(180%);
-  border-left:1px solid var(--border);
-  display:flex;flex-direction:column;z-index:50;
-}
-.sb-logo{
-  padding:28px 24px 20px;
-  display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
+#sb{position:absolute;right:0;top:0;bottom:0;width:var(--sidebar);background:var(--surface);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:50;}
+.sb-logo{padding:28px 24px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .sb-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
 .sb-logo h1{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sub);}
 
 .sb-input{padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .inp-wrap{position:relative;}
-#inp{
-  width:100%;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border-hi);
-  border-radius:12px;
-  color:var(--text);
-  font-size:15px;
-  font-family:inherit;
-  padding:12px 46px 12px 14px;
-  resize:none;outline:none;
-  line-height:1.5;
-  -webkit-appearance:none;
-  transition:border-color .2s,background .2s;
-}
+#inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border-hi);border-radius:12px;color:var(--text);font-size:15px;font-family:inherit;padding:12px 46px 12px 14px;resize:none;outline:none;line-height:1.5;-webkit-appearance:none;transition:border-color .2s,background .2s;}
 #inp:focus{border-color:rgba(123,97,255,.6);background:rgba(123,97,255,.05);}
 #inp::placeholder{color:var(--text-mute);font-size:14px;}
-#micbtn{
-  position:absolute;right:10px;bottom:10px;
-  width:30px;height:30px;border-radius:50%;
-  border:none;
-  background:rgba(255,255,255,.07);
-  color:var(--text-sub);
-  font-size:14px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;padding:0;
-  -webkit-appearance:none;
-  touch-action:manipulation;
-}
+#micbtn{position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.07);color:var(--text-sub);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0;-webkit-appearance:none;touch-action:manipulation;}
 #micbtn:active{transform:scale(.9);}
-#micbtn.rec{
-  background:rgba(255,69,58,.25);
-  color:var(--danger);
-  animation:recpulse 1.2s ease-in-out infinite;
-}
+#micbtn.rec{background:rgba(255,69,58,.25);color:var(--danger);animation:recpulse 1.2s ease-in-out infinite;}
 @keyframes recpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,58,.4);}50%{box-shadow:0 0 0 8px rgba(255,69,58,0);}}
 #micst{font-size:11px;color:var(--text-sub);margin-top:6px;min-height:16px;letter-spacing:.01em;}
 #micst.on{color:var(--danger);}
 
 .type-row{display:flex;gap:4px;margin-top:10px;}
-.tb{
-  flex:1;padding:6px 0;border-radius:8px;
-  border:1px solid transparent;
-  background:rgba(255,255,255,.04);
-  color:var(--text-mute);font-size:9px;
-  cursor:pointer;text-align:center;
-  font-family:inherit;font-weight:500;
-  letter-spacing:.04em;
-  transition:all .15s;
-  touch-action:manipulation;
-}
+.tb{flex:1;padding:6px 0;border-radius:8px;border:1px solid transparent;background:rgba(255,255,255,.04);color:var(--text-mute);font-size:9px;cursor:pointer;text-align:center;font-family:inherit;font-weight:500;letter-spacing:.04em;transition:all .15s;touch-action:manipulation;}
 .tb.on{color:#fff;}
 .tb[data-t="思考"].on{background:rgba(74,144,226,.2);border-color:rgba(74,144,226,.5);}
 .tb[data-t="会話"].on{background:rgba(52,199,89,.2);border-color:rgba(52,199,89,.5);}
@@ -105,82 +54,34 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .tb[data-t="疑問"].on{background:rgba(255,45,85,.2);border-color:rgba(255,45,85,.5);}
 .tb[data-t="障害"].on{background:rgba(255,69,58,.2);border-color:rgba(255,69,58,.6);}
 
-#addbtn{
-  width:100%;margin-top:10px;padding:13px;
-  background:var(--accent);
-  border:none;border-radius:12px;
-  color:#fff;font-size:14px;font-family:inherit;
-  font-weight:600;letter-spacing:.02em;
-  cursor:pointer;transition:all .15s;
-  touch-action:manipulation;
-}
+#addbtn{width:100%;margin-top:10px;padding:13px;background:var(--accent);border:none;border-radius:12px;color:#fff;font-size:14px;font-family:inherit;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:all .15s;touch-action:manipulation;}
 #addbtn:active{opacity:.8;transform:scale(.98);}
 
 .nlist{flex:1;overflow-y:auto;padding:8px 16px;}
 .nlist::-webkit-scrollbar{width:2px;}
 .nlist::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:1px;}
-.ni{
-  padding:10px 12px;margin-bottom:6px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  border-radius:10px;cursor:pointer;
-  transition:all .15s;
-}
+.ni{padding:10px 12px;margin-bottom:6px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;}
 .ni:active{background:rgba(255,255,255,.06);}
 .ni.sel{border-color:rgba(123,97,255,.5);background:rgba(123,97,255,.08);}
 .ni .ntag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;opacity:.7;}
 .ni .ntxt{font-size:12px;color:rgba(255,255,255,.7);line-height:1.45;}
 .ni .ncon{font-size:10px;color:var(--text-mute);margin-top:3px;}
 
-#tourbtn{
-  margin:6px 16px 4px;padding:14px;
-  background:linear-gradient(135deg,rgba(123,97,255,.8),rgba(59,130,246,.8));
-  border:none;border-radius:14px;
-  color:#fff;font-size:13px;font-weight:700;
-  font-family:inherit;cursor:pointer;
-  letter-spacing:.04em;text-align:center;
-  flex-shrink:0;transition:all .2s;
-  touch-action:manipulation;
-}
+#tourbtn{margin:6px 16px 4px;padding:14px;background:linear-gradient(135deg,rgba(123,97,255,.8),rgba(59,130,246,.8));border:none;border-radius:14px;color:#fff;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.04em;text-align:center;flex-shrink:0;transition:all .2s;touch-action:manipulation;}
 #tourbtn:active{opacity:.8;transform:scale(.98);}
 #tourbtn:disabled{opacity:.25;cursor:not-allowed;transform:none;}
 
-.connbtn{
-  margin:0 16px 6px;padding:10px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
-  border-radius:10px;
-  color:var(--text-sub);font-size:12px;
-  font-family:inherit;cursor:pointer;
-  text-align:center;flex-shrink:0;transition:all .15s;
-  touch-action:manipulation;
-}
+.connbtn{margin:0 16px 6px;padding:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:var(--text-sub);font-size:12px;font-family:inherit;cursor:pointer;text-align:center;flex-shrink:0;transition:all .15s;touch-action:manipulation;}
 .connbtn.on{background:var(--accent-glow);border-color:rgba(123,97,255,.4);color:var(--accent);}
 
-.sbinfo{
-  padding:10px 20px 16px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;
-}
+.sbinfo{padding:10px 20px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
 .sbinfo span{font-size:11px;color:var(--text-mute);letter-spacing:.04em;}
 #apistat{cursor:pointer;transition:color .15s;}
 #apistat.set{color:var(--success);}
 
-#tp{
-  position:absolute;left:0;right:var(--sidebar);bottom:0;height:0;
-  background:rgba(6,6,12,.97);
-  border-top:1px solid var(--border);
-  backdrop-filter:blur(30px);
-  z-index:40;overflow:hidden;
-  transition:height .5s cubic-bezier(.16,1,.3,1);
-  display:flex;flex-direction:column;
-}
+#tp{position:absolute;left:0;right:var(--sidebar);bottom:0;height:0;background:rgba(6,6,12,.97);border-top:1px solid var(--border);backdrop-filter:blur(30px);z-index:40;overflow:hidden;transition:height .5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;}
 #tp.open{height:52vh;}
-.tph{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 24px 12px;
-  border-bottom:1px solid var(--border);flex-shrink:0;
-}
+.tph{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .tph h2{font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;}
 .tpclose{background:none;border:none;color:var(--text-mute);cursor:pointer;font-size:18px;line-height:1;padding:4px;}
 .tpbody{flex:1;overflow-y:auto;padding:18px 24px;display:flex;gap:24px;}
@@ -191,78 +92,32 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
 .restxt{font-size:13px;color:rgba(255,255,255,.8);line-height:1.9;white-space:pre-wrap;}
 .copybtn{font-size:10px;color:var(--text-mute);cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;letter-spacing:.04em;}
-.copybtn:hover{color:var(--text-sub);}
 
-#apimod{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.8);
-  display:none;align-items:center;justify-content:center;
-  z-index:300;backdrop-filter:blur(20px);
-}
+#apimod{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:300;backdrop-filter:blur(20px);}
 #apimod.show{display:flex;}
-.mbox{
-  background:rgba(16,16,26,.98);
-  border:1px solid var(--border-hi);
-  border-radius:20px;padding:32px 28px;
-  width:460px;max-width:94vw;
-}
+.mbox{background:rgba(16,16,26,.98);border:1px solid var(--border-hi);border-radius:20px;padding:32px 28px;width:460px;max-width:94vw;}
 .mbox h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
 .mbox p{font-size:12px;color:var(--text-sub);line-height:1.7;margin-bottom:16px;}
 .mbox .divider{display:flex;align-items:center;gap:12px;margin:16px 0;}
 .mbox .divider::before,.mbox .divider::after{content:'';flex:1;height:1px;background:var(--border-hi);}
 .mbox .divider span{font-size:10px;color:var(--text-mute);letter-spacing:.06em;text-transform:uppercase;}
-.mbox input{
-  width:100%;background:rgba(255,255,255,.05);
-  border:1px solid var(--border-hi);border-radius:10px;
-  color:var(--text);font-size:13px;padding:12px 14px;
-  outline:none;font-family:monospace;letter-spacing:.05em;margin-bottom:12px;
-}
+.mbox input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border-hi);border-radius:10px;color:var(--text);font-size:13px;padding:12px 14px;outline:none;font-family:monospace;letter-spacing:.05em;margin-bottom:12px;}
 .mbox input:focus{border-color:rgba(123,97,255,.6);}
 .mbtns{display:flex;gap:10px;}
 .mbtn{flex:1;padding:12px;border-radius:10px;border:1px solid;font-size:13px;font-family:inherit;cursor:pointer;font-weight:600;}
 .mbtn.p{background:var(--accent);border-color:transparent;color:#fff;}
 .mbtn.s{background:transparent;border-color:var(--border-hi);color:var(--text-sub);}
-.mbtn.copy{
-  width:100%;background:linear-gradient(135deg,rgba(48,209,88,.15),rgba(0,122,255,.15));
-  border:1px solid rgba(48,209,88,.3);color:var(--success);
-  font-size:13px;font-family:inherit;cursor:pointer;font-weight:600;
-  padding:14px;border-radius:12px;
-}
+.mbtn.copy{width:100%;background:linear-gradient(135deg,rgba(48,209,88,.15),rgba(0,122,255,.15));border:1px solid rgba(48,209,88,.3);color:var(--success);font-size:13px;font-family:inherit;cursor:pointer;font-weight:600;padding:14px;border-radius:12px;}
 #copyfb{font-size:11px;color:var(--success);text-align:center;min-height:18px;margin-top:8px;}
 
-#tip{
-  position:absolute;
-  background:rgba(16,16,26,.96);border:1px solid var(--border-hi);
-  border-radius:12px;padding:10px 14px;max-width:220px;
-  font-size:12px;color:var(--text);pointer-events:none;
-  opacity:0;transition:opacity .15s;z-index:60;line-height:1.6;
-  backdrop-filter:blur(10px);
-}
+#tip{position:absolute;background:rgba(16,16,26,.96);border:1px solid var(--border-hi);border-radius:12px;padding:10px 14px;max-width:220px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity .15s;z-index:60;line-height:1.6;backdrop-filter:blur(10px);}
 #tip.show{opacity:1;}
-#cnhint{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  background:rgba(123,97,255,.2);border:1px solid rgba(123,97,255,.4);
-  border-radius:24px;padding:10px 24px;
-  font-size:12px;color:rgba(123,97,255,.9);
-  pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;
-  backdrop-filter:blur(12px);white-space:nowrap;
-}
+#cnhint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(123,97,255,.2);border:1px solid rgba(123,97,255,.4);border-radius:24px;padding:10px 24px;font-size:12px;color:rgba(123,97,255,.9);pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;backdrop-filter:blur(12px);white-space:nowrap;}
 #cnhint.show{opacity:1;}
-#aitoast{
-  position:fixed;left:50%;bottom:32px;transform:translateX(-50%);
-  background:rgba(16,16,26,.96);border:1px solid rgba(255,159,10,.3);
-  border-radius:28px;padding:11px 22px;
-  font-size:12px;color:var(--gold);
-  pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;
-  white-space:nowrap;backdrop-filter:blur(12px);letter-spacing:.02em;
-}
+#aitoast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:rgba(16,16,26,.96);border:1px solid rgba(255,159,10,.3);border-radius:28px;padding:11px 22px;font-size:12px;color:var(--gold);pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;backdrop-filter:blur(12px);letter-spacing:.02em;}
 #aitoast.show{opacity:1;}
 
-#empty{
-  position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-  pointer-events:none;
-}
+#empty{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;pointer-events:none;}
 #empty .e-icon{font-size:36px;opacity:.2;}
 #empty p{font-size:13px;color:var(--text-mute);text-align:center;line-height:1.9;font-weight:400;letter-spacing:.02em;}
 
@@ -272,19 +127,7 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   #cv{width:100vw;height:54vh;}
   #lyr{width:100vw;height:54vh;}
   #empty{width:100vw;height:54vh;}
-  #sb{
-    position:fixed;
-    top:54vh;left:0;right:0;bottom:0;
-    width:100%;border-left:none;
-    border-top:1px solid var(--border);
-    /* ★ overflow:auto でスクロール可能に */
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-    /* flex は維持しつつ内容が収まらない場合はスクロール */
-    flex-shrink:0;
-  }
-  /* モバイルではflexを解除してブロック積み上げにする */
-  #sb{display:block;}
+  #sb{position:fixed;top:54vh;left:0;right:0;bottom:0;width:100%;border-left:none;border-top:1px solid var(--border);overflow-y:auto;-webkit-overflow-scrolling:touch;display:block;}
   .sb-logo{display:none;}
   .nlist{display:none;}
   .sb-input{padding:12px 14px;border-bottom:1px solid var(--border);}
@@ -293,28 +136,13 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   .connbtn{margin:0 14px 6px;padding:10px;display:block;width:calc(100% - 28px);}
   .sbinfo{padding:8px 16px 14px;}
   #micbtn{width:32px;height:32px;font-size:15px;}
-  /* ★ ツアーパネルをモバイルでフルスクリーンオーバーレイに */
-  #tp{
-    position:fixed;
-    left:0;right:0;bottom:0;
-    /* 閉じているときは height:0 のまま */
-    border-radius:20px 20px 0 0;
-  }
-  #tp.open{
-    height:92vh;
-    z-index:200;
-  }
-  .tph{padding:14px 18px 12px;border-bottom:1px solid var(--border);}
+  /* ツアーパネル：フルスクリーンオーバーレイ */
+  #tp{position:fixed;left:0;right:0;bottom:0;border-radius:20px 20px 0 0;}
+  #tp.open{height:92vh;z-index:200;}
+  .tph{padding:14px 18px 12px;}
   .tph h2{font-size:13px;}
   .tpclose{font-size:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
-  .tpbody{
-    flex-direction:column;
-    padding:16px 18px 40px;
-    gap:28px;
-    /* 確実にスクロール可能 */
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-  }
+  .tpbody{flex-direction:column;padding:16px 18px 40px;gap:28px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .tpcol h3{font-size:11px;margin-bottom:8px;}
   .tptxt,.restxt{font-size:15px;line-height:2.0;}
 }
@@ -327,12 +155,8 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   <div class="e-icon">◉</div>
   <p>思考を言葉にする。<br>つながりが、突破口になる。</p>
 </div>
-
 <div id="sb">
-  <div class="sb-logo">
-    <div class="dot"></div>
-    <h1>脳内空間</h1>
-  </div>
+  <div class="sb-logo"><div class="dot"></div><h1>脳内空間</h1></div>
   <div class="sb-input">
     <div class="inp-wrap">
       <textarea id="inp" rows="2" placeholder="思考を入力する..."></textarea>
@@ -358,28 +182,16 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
     <span id="apistat">API 未設定</span>
   </div>
 </div>
-
 <div id="tp">
-  <div class="tph">
-    <h2>思考ツアー</h2>
-    <button class="tpclose" id="tpclose">×</button>
-  </div>
+  <div class="tph"><h2>思考ツアー</h2><button class="tpclose" id="tpclose">×</button></div>
   <div class="tpbody">
-    <div class="tpcol">
-      <h3>全体像 <button class="copybtn" id="copynr">コピー</button></h3>
-      <div class="tptxt" id="nrtxt"></div>
-    </div>
-    <div class="tpcol">
-      <h3>解決の道筋 <button class="copybtn" id="copyrs">コピー</button></h3>
-      <div class="restxt" id="rstxt"></div>
-    </div>
+    <div class="tpcol"><h3>全体像 <button class="copybtn" id="copynr">コピー</button></h3><div class="tptxt" id="nrtxt"></div></div>
+    <div class="tpcol"><h3>解決の道筋 <button class="copybtn" id="copyrs">コピー</button></h3><div class="restxt" id="rstxt"></div></div>
   </div>
 </div>
-
 <div id="tip"></div>
 <div id="cnhint">ノードをタップして接続元を選択</div>
 <div id="aitoast"></div>
-
 <div id="apimod">
   <div class="mbox">
     <h3>思考を分析する</h3>
@@ -403,83 +215,54 @@ const isMobile=()=>window.innerWidth<=768;
 const W=()=>isMobile()?window.innerWidth:window.innerWidth-320;
 const H=()=>isMobile()?window.innerHeight*0.54:window.innerHeight;
 
-/* ── Mobile keyboard: push sidebar up so input stays visible ── */
+/* Mobile keyboard */
 if(isMobile()&&window.visualViewport){
   const sb=document.getElementById('sb');
-  const sync=()=>{
-    const vv=window.visualViewport;
-    const kb=window.innerHeight-(vv.offsetTop+vv.height);
-    sb.style.top=(vv.height*0.54+vv.offsetTop)+'px';
-    /* キーボードが出ているときは bottom を keyboard高さ分だけ上げない
-       → スクロールで届けるため bottom:0 固定のまま */
-    sb.style.bottom='0';
-  };
+  const sync=()=>{const vv=window.visualViewport;sb.style.top=(vv.height*0.54+vv.offsetTop)+'px';sb.style.bottom='0';};
   window.visualViewport.addEventListener('resize',sync);
   window.visualViewport.addEventListener('scroll',sync);
-  document.getElementById('inp').addEventListener('blur',()=>{
-    setTimeout(()=>{
-      const sb=document.getElementById('sb');
-      sb.style.top='54vh';
-      sb.style.bottom='0';
-    },250);
-  });
+  document.getElementById('inp').addEventListener('blur',()=>{setTimeout(()=>{const sb=document.getElementById('sb');sb.style.top='54vh';sb.style.bottom='0';},250);});
 }
 
 const TYPES={
-  '思考':     {hex:0x4A90E2,css:'#4A90E2',em:0x0d1f3c,glow:'rgba(74,144,226,.35)'},
-  '会話':     {hex:0x34C759,css:'#34C759',em:0x0a2e12,glow:'rgba(52,199,89,.35)'},
-  'インサイト':{hex:0xFF9F0A,css:'#FF9F0A',em:0x3d2600,glow:'rgba(255,159,10,.35)'},
-  '疑問':     {hex:0xFF2D55,css:'#FF2D55',em:0x3d0010,glow:'rgba(255,45,85,.35)'},
-  '障害':     {hex:0xFF453A,css:'#FF453A',em:0x3d0800,glow:'rgba(255,69,58,.4)'},
+  '思考':     {hex:0x4A90E2,css:'#4A90E2',em:0x0d1f3c},
+  '会話':     {hex:0x34C759,css:'#34C759',em:0x0a2e12},
+  'インサイト':{hex:0xFF9F0A,css:'#FF9F0A',em:0x3d2600},
+  '疑問':     {hex:0xFF2D55,css:'#FF2D55',em:0x3d0010},
+  '障害':     {hex:0xFF453A,css:'#FF453A',em:0x3d0800},
 };
 
 let nodes=[],links=[],idCtr=0,selIds=[],connMode=false,af=0,pf=0;
 let apiKey=localStorage.getItem('brain_api_key')||null;
 
-function updateApiStat(){
-  const el=document.getElementById('apistat');
-  if(apiKey){el.textContent='API 設定済み';el.className='set';}
-  else{el.textContent='API 未設定';el.className='';}
-}
+function updateApiStat(){const el=document.getElementById('apistat');if(apiKey){el.textContent='API 設定済み';el.className='set';}else{el.textContent='API 未設定';el.className='';}}
 updateApiStat();
-document.getElementById('apistat').onclick=()=>{
-  if(apiKey){if(confirm('APIキーをリセットしますか？')){apiKey=null;localStorage.removeItem('brain_api_key');updateApiStat();}}
-  else document.getElementById('apimod').classList.add('show');
-};
+document.getElementById('apistat').onclick=()=>{if(apiKey){if(confirm('APIキーをリセットしますか？')){apiKey=null;localStorage.removeItem('brain_api_key');updateApiStat();}}else document.getElementById('apimod').classList.add('show');};
 
+/* Three.js */
 const cv=document.getElementById('cv');
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2.5));
 renderer.setSize(W(),H());
 renderer.setClearColor(0x000000);
-
 const scene=new THREE.Scene();
 scene.fog=new THREE.FogExp2(0x000000,0.0012);
-
 const camera=new THREE.PerspectiveCamera(55,W()/H(),1,5000);
 let camTheta=0.4,camPhi=1.1,camR=500;
 function posCamera(){camera.position.set(camR*Math.sin(camPhi)*Math.cos(camTheta),camR*Math.cos(camPhi),camR*Math.sin(camPhi)*Math.sin(camTheta));camera.lookAt(0,0,0);}
 posCamera();
-
 scene.add(new THREE.AmbientLight(0x0a0818,3));
 const pl1=new THREE.PointLight(0x7B61FF,4,1000);pl1.position.set(300,200,100);scene.add(pl1);
 const pl2=new THREE.PointLight(0x1e3a8a,3,800);pl2.position.set(-250,-100,250);scene.add(pl2);
 const pl3=new THREE.PointLight(0x4c0519,2.5,600);pl3.position.set(0,-300,-200);scene.add(pl3);
-
-{const N=3000,pos=new Float32Array(N*3);
-for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;}
-const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:1.3,transparent:true,opacity:.55,sizeAttenuation:false})));}
+{const N=3000,pos=new Float32Array(N*3);for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:1.3,transparent:true,opacity:.55,sizeAttenuation:false})));}
 
 const nodeMeshes=[],linkLines=[],RC=new THREE.Raycaster(),MP=new THREE.Vector2();
 function nr(n){return 15+Math.min(n.connections*5,28);}
 
 function mkNode(n){
   const tc=TYPES[n.type]||TYPES['思考'],r=nr(n);
-  const core=new THREE.Mesh(
-    new THREE.SphereGeometry(r,32,32),
-    new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,emissiveIntensity:1.2,shininess:120,specular:0xffffff})
-  );
+  const core=new THREE.Mesh(new THREE.SphereGeometry(r,32,32),new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,emissiveIntensity:1.2,shininess:120,specular:0xffffff}));
   core.position.set(n.x,n.y,n.z);core.userData.nid=n.id;scene.add(core);
   const g1Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.12,side:THREE.BackSide});
   core.add(new THREE.Mesh(new THREE.SphereGeometry(r*2.4,16,16),g1Mat));
@@ -491,12 +274,14 @@ function mkNode(n){
   nodeMeshes.push({id:n.id,core,g1Mat,g2Mat,label:lbl,r,type:n.type});
 }
 
-function mkLink(sId,tId){
+function mkLink(sId,tId,style='normal'){
   const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(!s||!t)return;
   const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(s.x,s.y,s.z),new THREE.Vector3(t.x,t.y,t.z)]);
-  const mat=new THREE.LineBasicMaterial({color:0x4a4a7a,transparent:true,opacity:.3});
+  /* 流動性ラインは金色で太く目立たせる */
+  const isFlow=style==='flow';
+  const mat=new THREE.LineBasicMaterial({color:isFlow?0xFFD700:0x4a4a7a,transparent:true,opacity:isFlow?.7:.3,linewidth:1});
   const line=new THREE.Line(geo,mat);scene.add(line);
-  linkLines.push({id:`${sId}_${tId}`,line,geo,mat,src:sId,tgt:tId});
+  linkLines.push({id:`${sId}_${tId}`,line,geo,mat,src:sId,tgt:tId,style});
 }
 
 function tick(){
@@ -528,7 +313,9 @@ function syncScene(){
     const s=nodes.find(n=>n.id===ll.src),t=nodes.find(n=>n.id===ll.tgt);if(!s||!t)continue;
     ll.geo.setFromPoints([new THREE.Vector3(s.x,s.y,s.z),new THREE.Vector3(t.x,t.y,t.z)]);ll.geo.computeBoundingSphere();
     const hl=selIds.length>0&&(selIds.includes(ll.src)||selIds.includes(ll.tgt));
-    ll.mat.opacity=hl?.7:.3;ll.mat.color.setHex(hl?0x7B61FF:0x3a3a6a);
+    const isFlow=ll.style==='flow';
+    if(!isFlow){ll.mat.opacity=hl?.7:.3;ll.mat.color.setHex(hl?0x7B61FF:0x3a3a6a);}
+    else{/* 流動性ラインはアニメーションで脈打つ */ll.mat.opacity=0.5+0.2*Math.sin(af*.04+ll.src);}
   }
 }
 function syncLabels(){
@@ -551,20 +338,47 @@ function addNode(text,type){
   if(selIds.length&&selIds[0]!==n.id)addLink(selIds[0],n.id);
   pf=0;updateUI();return n;
 }
-function addLink(sId,tId){
-  if(links.find(l=>(l.src===sId&&l.tgt===tId)||(l.src===tId&&l.tgt===sId)))return;
-  links.push({src:sId,tgt:tId});
-  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(s)s.connections++;if(t)t.connections++;
-  mkLink(sId,tId);pf=0;updateUI();checkAutoInsight(sId,tId);
+
+/* ★ 流動性チェック：接続数3以上の未接続ノードペアを自動で線結び */
+const FLOW_THRESHOLD=3;
+function checkFlowLinks(){
+  const highFlow=nodes.filter(n=>n.connections>=FLOW_THRESHOLD);
+  for(let i=0;i<highFlow.length;i++){
+    for(let j=i+1;j<highFlow.length;j++){
+      const a=highFlow[i],b=highFlow[j];
+      const already=links.find(l=>(l.src===a.id&&l.tgt===b.id)||(l.src===b.id&&l.tgt===a.id));
+      if(!already){
+        links.push({src:a.id,tgt:b.id,style:'flow'});
+        mkLink(a.id,b.id,'flow');
+        showToast(`✦ 「${a.text.slice(0,10)}」と「${b.text.slice(0,10)}」の流動性が高まりました`);
+      }
+    }
+  }
 }
 
+function addLink(sId,tId,style='normal'){
+  if(links.find(l=>(l.src===sId&&l.tgt===tId)||(l.src===tId&&l.tgt===sId)))return;
+  links.push({src:sId,tgt:tId,style});
+  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(s)s.connections++;if(t)t.connections++;
+  mkLink(sId,tId,style);pf=0;
+  checkFlowLinks();      /* 流動性チェック */
+  checkAutoInsight(sId,tId); /* AI インサイト（APIキーある場合のみ） */
+  updateUI();
+}
+
+function showToast(msg,duration=3500){
+  const t=document.getElementById('aitoast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),duration);
+}
+
+/* AI Auto-insight（APIキー必要） */
 let aiCD=false;
 async function checkAutoInsight(sId,tId){
   if(!apiKey||aiCD)return;
   const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(!s||!t)return;
   if(!(s.connections>=2&&t.connections>=2)&&s.type!=='障害'&&t.type!=='障害')return;
   aiCD=true;setTimeout(()=>{aiCD=false;},18000);
-  const toast=document.getElementById('aitoast');toast.textContent='✦ インサイトを生成中...';toast.classList.add('show');
+  showToast('✦ インサイトを生成中...',20000);
   try{
     const rIds=new Set([sId,tId]);links.forEach(l=>{if(l.src===sId||l.tgt===sId||l.src===tId||l.tgt===tId){rIds.add(l.src);rIds.add(l.tgt);}});
     const desc=[...rIds].map(id=>nodes.find(n=>n.id===id)).filter(Boolean).map(n=>`[${n.type}] ${n.text}`).join('\n');
@@ -572,10 +386,11 @@ async function checkAutoInsight(sId,tId){
     const ins=await callClaude(`思考マップで新接続。\n理由: ${reason}\n関連:\n${desc}\n\n洞察・突破口を1〜2文で。「〜ではないか」形式で。`);
     const iN={id:++idCtr,text:ins.slice(0,55),type:'インサイト',x:(s.x+t.x)/2+(Math.random()-.5)*90,y:(s.y+t.y)/2+(Math.random()-.5)*90,z:(s.z+t.z)/2+(Math.random()-.5)*90,vx:0,vy:0,vz:0,connections:0,ts:'✦ 自動'};
     nodes.push(iN);mkNode(iN);addLink(iN.id,sId);addLink(iN.id,tId);pf=0;updateUI();
-    toast.textContent='✦ 新しいインサイトが生まれました';setTimeout(()=>toast.classList.remove('show'),3500);
-  }catch(e){toast.textContent='接続エラー';setTimeout(()=>toast.classList.remove('show'),3000);}
+    showToast('✦ 新しいインサイトが生まれました');
+  }catch(e){showToast('接続エラー: '+e.message);}
 }
 
+/* Interaction */
 let drag=false,dd=0,pmx=0,pmy=0;
 cv.addEventListener('mousedown',e=>{drag=true;dd=0;pmx=e.clientX;pmy=e.clientY;});
 cv.addEventListener('touchstart',e=>{const t=e.touches[0];drag=true;dd=0;pmx=t.clientX;pmy=t.clientY;},{passive:true});
@@ -597,7 +412,7 @@ cv.addEventListener('wheel',e=>{camR=Math.max(80,Math.min(1600,camR+e.deltaY*.6)
 function handleClick(id){if(connMode){if(!selIds.length){selIds=[id];const n=nodes.find(x=>x.id===id);document.getElementById('cnhint').textContent=`「${n?.text?.slice(0,12)}」→ 接続先をタップ`;}else if(selIds[0]!==id){addLink(selIds[0],id);selIds=[];document.getElementById('cnhint').textContent='ノードをタップして接続元を選択';}}else{selIds=selIds.includes(id)?[]:[id];}updateUI();}
 function updateUI(){
   const list=document.getElementById('nlist');list.innerHTML='';
-  [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.dataset.id=n.id;d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">${n.connections} 接続</div>`:''}`;d.onclick=()=>handleClick(n.id);list.appendChild(d);});
+  [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">${n.connections} 接続</div>`:''}`;d.onclick=()=>handleClick(n.id);list.appendChild(d);});
   document.getElementById('nc').textContent=`${nodes.length} 思考`;
   document.getElementById('lc').textContent=`${links.length} 接続`;
   document.getElementById('tourbtn').disabled=nodes.length===0;
@@ -611,63 +426,22 @@ document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(doc
 document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
 window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
 
-/* ── Voice input ── iOS fix: touchend で直接 start() ── */
+/* Voice input */
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let recog=null,isRec=false;
 if(SR){
-  recog=new SR();
-  recog.lang='ja-JP';
-  recog.continuous=false;
-  recog.interimResults=true;
-  recog.onresult=e=>{
-    let final='',interim='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      if(e.results[i].isFinal)final+=e.results[i][0].transcript;
-      else interim+=e.results[i][0].transcript;
-    }
-    const v=final||interim;
-    if(v)document.getElementById('inp').value=v;
-    if(final)stopRec();
-  };
+  recog=new SR();recog.lang='ja-JP';recog.continuous=false;recog.interimResults=true;
+  recog.onresult=e=>{let final='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript;else interim+=e.results[i][0].transcript;}const v=final||interim;if(v)document.getElementById('inp').value=v;if(final)stopRec();};
   recog.onend=()=>stopRec();
-  recog.onerror=e=>{
-    stopRec();
-    const msg={'not-allowed':'マイクを許可してください','service-not-allowed':'設定→Safari→マイクをON','no-speech':'もう一度話してください','network':'ネット接続を確認'};
-    document.getElementById('micst').textContent='⚠ '+(msg[e.error]||e.error);
-  };
+  recog.onerror=e=>{stopRec();const msg={'not-allowed':'マイクを許可してください','service-not-allowed':'設定→Safari→マイクをON','no-speech':'もう一度話してください','network':'ネット接続を確認'};document.getElementById('micst').textContent='⚠ '+(msg[e.error]||e.error);};
 }
-function startRec(){
-  if(!recog||isRec)return;
-  isRec=true;
-  document.getElementById('inp').value='';
-  document.getElementById('micbtn').classList.add('rec');
-  document.getElementById('micbtn').textContent='■';
-  document.getElementById('micst').textContent='● 話してください';
-  document.getElementById('micst').classList.add('on');
-  try{recog.start();}catch(e){stopRec();}
-}
-function stopRec(){
-  if(!isRec)return;
-  isRec=false;
-  document.getElementById('micbtn').classList.remove('rec');
-  document.getElementById('micbtn').textContent='🎤';
-  document.getElementById('micst').textContent='';
-  document.getElementById('micst').classList.remove('on');
-  try{recog.stop();}catch(e){}
-}
+function startRec(){if(!recog||isRec)return;isRec=true;document.getElementById('inp').value='';document.getElementById('micbtn').classList.add('rec');document.getElementById('micbtn').textContent='■';document.getElementById('micst').textContent='● 話してください';document.getElementById('micst').classList.add('on');try{recog.start();}catch(e){stopRec();}}
+function stopRec(){if(!isRec)return;isRec=false;document.getElementById('micbtn').classList.remove('rec');document.getElementById('micbtn').textContent='🎤';document.getElementById('micst').textContent='';document.getElementById('micst').classList.remove('on');try{recog.stop();}catch(e){}}
 const micBtn=document.getElementById('micbtn');
-micBtn.addEventListener('touchend',e=>{
-  e.preventDefault();e.stopPropagation();
-  if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}
-  isRec?stopRec():startRec();
-},{passive:false});
-micBtn.addEventListener('click',e=>{
-  if('ontouchstart' in window)return;
-  if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}
-  isRec?stopRec():startRec();
-});
+micBtn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();},{passive:false});
+micBtn.addEventListener('click',e=>{if('ontouchstart' in window)return;if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();});
 
-/* ── Tour / API ── */
+/* Tour / API */
 document.getElementById('tourbtn').onclick=()=>{if(!nodes.length)return;if(!apiKey)document.getElementById('apimod').classList.add('show');else startTour();};
 document.getElementById('apiok').onclick=()=>{const k=document.getElementById('apiin').value.trim();if(!k.startsWith('sk-ant-')){alert('形式が正しくありません');return;}apiKey=k;localStorage.setItem('brain_api_key',k);updateApiStat();document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';startTour();};
 document.getElementById('apicx').onclick=()=>{document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';};
@@ -686,49 +460,24 @@ async function startTour(){
   }catch(e){nrEl.className='tptxt';nrEl.textContent=`エラー: ${e.message}`;}
 }
 
-function animate(){
-  requestAnimationFrame(animate);af++;
-  tick();syncScene();syncLabels();
-  pl1.position.x=Math.cos(af*.003)*320;pl1.position.z=Math.sin(af*.003)*320;
-  pl2.position.x=Math.cos(af*.002+2)*280;pl2.position.z=Math.sin(af*.002+2)*280;
-  renderer.render(scene,camera);
-}
-/* ── 永続化：保存・読み込み・リセット ── */
+/* ── 永続化 ── */
 const STORE_KEY='brain_data_v1';
-
 function saveState(){
-  try{
-    localStorage.setItem(STORE_KEY,JSON.stringify({
-      nodes:nodes.map(n=>({id:n.id,text:n.text,type:n.type,x:n.x,y:n.y,z:n.z,connections:n.connections,ts:n.ts})),
-      links,idCtr
-    }));
-  }catch(e){}
+  try{localStorage.setItem(STORE_KEY,JSON.stringify({nodes:nodes.map(n=>({id:n.id,text:n.text,type:n.type,x:n.x,y:n.y,z:n.z,connections:n.connections,ts:n.ts})),links,idCtr}));}catch(e){}
 }
-
 function loadState(){
   try{
-    const raw=localStorage.getItem(STORE_KEY);
-    if(!raw)return;
-    const data=JSON.parse(raw);
-    if(!data||!Array.isArray(data.nodes))return;
+    const raw=localStorage.getItem(STORE_KEY);if(!raw)return;
+    const data=JSON.parse(raw);if(!data||!Array.isArray(data.nodes))return;
     idCtr=data.idCtr||0;
-    /* ノードを復元 */
-    data.nodes.forEach(n=>{
-      const node={...n,vx:0,vy:0,vz:0};
-      nodes.push(node);mkNode(node);
-    });
-    /* リンクを復元 */
-    data.links.forEach(l=>{
-      links.push(l);mkLink(l.src,l.tgt);
-    });
+    data.nodes.forEach(n=>{const node={...n,vx:0,vy:0,vz:0};nodes.push(node);mkNode(node);});
+    data.links.forEach(l=>{links.push(l);mkLink(l.src,l.tgt,l.style||'normal');});
     if(nodes.length)document.getElementById('empty').style.display='none';
     pf=0;
   }catch(e){}
 }
-
 function resetState(){
   if(!confirm('すべての思考をリセットしますか？この操作は取り消せません。'))return;
-  /* Three.js オブジェクト削除 */
   nodeMeshes.forEach(nm=>{scene.remove(nm.core);nm.label.remove();});
   linkLines.forEach(ll=>scene.remove(ll.line));
   nodeMeshes.length=0;linkLines.length=0;
@@ -737,15 +486,17 @@ function resetState(){
   document.getElementById('empty').style.display='flex';
   updateUI();
 }
-
-/* updateUI の末尾で保存 */
 const _updateUI=updateUI;
 updateUI=function(){_updateUI();saveState();};
-
-/* リセットボタン */
 document.getElementById('resetbtn').onclick=resetState;
 
-/* 起動時に復元してからアニメーション開始 */
+function animate(){
+  requestAnimationFrame(animate);af++;
+  tick();syncScene();syncLabels();
+  pl1.position.x=Math.cos(af*.003)*320;pl1.position.z=Math.sin(af*.003)*320;
+  pl2.position.x=Math.cos(af*.002+2)*280;pl2.position.z=Math.sin(af*.002+2)*280;
+  renderer.render(scene,camera);
+}
 loadState();
 animate();updateUI();
 </script>
