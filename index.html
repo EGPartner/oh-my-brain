@@ -25,12 +25,10 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Hiragino Sans','Noto Sans JP',system-ui,sans-serif;user-select:none;}
 
-/* ── Canvas ── */
 #cv{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;}
 #lyr{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;pointer-events:none;overflow:hidden;}
 .nlb{position:absolute;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.75);text-shadow:0 0 12px rgba(0,0,0,1),0 0 24px rgba(0,0,0,1);white-space:nowrap;pointer-events:none;}
 
-/* ── Sidebar ── */
 #sb{
   position:absolute;right:0;top:0;bottom:0;width:var(--sidebar);
   background:var(--surface);
@@ -48,7 +46,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .sb-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
 .sb-logo h1{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sub);}
 
-/* ── Input area ── */
 .sb-input{padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .inp-wrap{position:relative;}
 #inp{
@@ -83,14 +80,12 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 #micbtn.rec{
   background:rgba(255,69,58,.25);
   color:var(--danger);
-  box-shadow:0 0 0 0 rgba(255,69,58,.4);
   animation:recpulse 1.2s ease-in-out infinite;
 }
 @keyframes recpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,58,.4);}50%{box-shadow:0 0 0 8px rgba(255,69,58,0);}}
 #micst{font-size:11px;color:var(--text-sub);margin-top:6px;min-height:16px;letter-spacing:.01em;}
 #micst.on{color:var(--danger);}
 
-/* ── Type selector ── */
 .type-row{display:flex;gap:4px;margin-top:10px;}
 .tb{
   flex:1;padding:6px 0;border-radius:8px;
@@ -104,10 +99,10 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   touch-action:manipulation;
 }
 .tb.on{color:#fff;}
-.tb[data-t="思考"].on{background:rgba(58,123,213,.2);border-color:rgba(58,123,213,.5);}
-.tb[data-t="会話"].on{background:rgba(46,204,113,.2);border-color:rgba(46,204,113,.5);}
+.tb[data-t="思考"].on{background:rgba(74,144,226,.2);border-color:rgba(74,144,226,.5);}
+.tb[data-t="会話"].on{background:rgba(52,199,89,.2);border-color:rgba(52,199,89,.5);}
 .tb[data-t="インサイト"].on{background:rgba(255,159,10,.2);border-color:rgba(255,159,10,.5);}
-.tb[data-t="疑問"].on{background:rgba(233,30,140,.2);border-color:rgba(233,30,140,.5);}
+.tb[data-t="疑問"].on{background:rgba(255,45,85,.2);border-color:rgba(255,45,85,.5);}
 .tb[data-t="障害"].on{background:rgba(255,69,58,.2);border-color:rgba(255,69,58,.6);}
 
 #addbtn{
@@ -121,7 +116,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 }
 #addbtn:active{opacity:.8;transform:scale(.98);}
 
-/* ── Node list ── */
 .nlist{flex:1;overflow-y:auto;padding:8px 16px;}
 .nlist::-webkit-scrollbar{width:2px;}
 .nlist::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:1px;}
@@ -138,7 +132,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .ni .ntxt{font-size:12px;color:rgba(255,255,255,.7);line-height:1.45;}
 .ni .ncon{font-size:10px;color:var(--text-mute);margin-top:3px;}
 
-/* ── Tour button ── */
 #tourbtn{
   margin:6px 16px 4px;padding:14px;
   background:linear-gradient(135deg,rgba(123,97,255,.8),rgba(59,130,246,.8));
@@ -173,7 +166,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 #apistat{cursor:pointer;transition:color .15s;}
 #apistat.set{color:var(--success);}
 
-/* ── Tour panel ── */
 #tp{
   position:absolute;left:0;right:var(--sidebar);bottom:0;height:0;
   background:rgba(6,6,12,.97);
@@ -191,7 +183,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 }
 .tph h2{font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;}
 .tpclose{background:none;border:none;color:var(--text-mute);cursor:pointer;font-size:18px;line-height:1;padding:4px;}
-.tpclose:hover{color:var(--text-sub);}
 .tpbody{flex:1;overflow-y:auto;padding:18px 24px;display:flex;gap:24px;}
 .tpcol{flex:1;min-width:0;}
 .tpcol h3{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:10px;}
@@ -202,7 +193,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .copybtn{font-size:10px;color:var(--text-mute);cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;letter-spacing:.04em;}
 .copybtn:hover{color:var(--text-sub);}
 
-/* ── API Modal ── */
 #apimod{
   position:fixed;inset:0;
   background:rgba(0,0,0,.8);
@@ -240,7 +230,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 }
 #copyfb{font-size:11px;color:var(--success);text-align:center;min-height:18px;margin-top:8px;}
 
-/* ── Overlays ── */
 #tip{
   position:absolute;
   background:rgba(16,16,26,.96);border:1px solid var(--border-hi);
@@ -269,7 +258,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 }
 #aitoast.show{opacity:1;}
 
-/* ── Empty state ── */
 #empty{
   position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
@@ -289,18 +277,46 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
     top:54vh;left:0;right:0;bottom:0;
     width:100%;border-left:none;
     border-top:1px solid var(--border);
-    overflow:hidden;
+    /* ★ overflow:auto でスクロール可能に */
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    /* flex は維持しつつ内容が収まらない場合はスクロール */
+    flex-shrink:0;
   }
+  /* モバイルではflexを解除してブロック積み上げにする */
+  #sb{display:block;}
   .sb-logo{display:none;}
   .nlist{display:none;}
-  .sb-input{padding:12px 14px;}
+  .sb-input{padding:12px 14px;border-bottom:1px solid var(--border);}
   #inp{font-size:16px;padding:11px 44px 11px 12px;}
-  #tourbtn{margin:5px 14px 3px;padding:13px;font-size:13px;}
-  .connbtn{margin:0 14px 5px;padding:9px;}
-  #tp{right:0;}
-  .tpbody{flex-direction:column;padding:14px 18px;}
-  .sbinfo{padding:8px 16px 12px;}
+  #tourbtn{margin:10px 14px 6px;padding:14px;font-size:13px;display:block;width:calc(100% - 28px);}
+  .connbtn{margin:0 14px 6px;padding:10px;display:block;width:calc(100% - 28px);}
+  .sbinfo{padding:8px 16px 14px;}
   #micbtn{width:32px;height:32px;font-size:15px;}
+  /* ★ ツアーパネルをモバイルでフルスクリーンオーバーレイに */
+  #tp{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    /* 閉じているときは height:0 のまま */
+    border-radius:20px 20px 0 0;
+  }
+  #tp.open{
+    height:92vh;
+    z-index:200;
+  }
+  .tph{padding:14px 18px 12px;border-bottom:1px solid var(--border);}
+  .tph h2{font-size:13px;}
+  .tpclose{font-size:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
+  .tpbody{
+    flex-direction:column;
+    padding:16px 18px 40px;
+    gap:28px;
+    /* 確実にスクロール可能 */
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .tpcol h3{font-size:11px;margin-bottom:8px;}
+  .tptxt,.restxt{font-size:15px;line-height:2.0;}
 }
 </style>
 </head>
@@ -335,6 +351,7 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   <div class="nlist" id="nlist"></div>
   <button id="tourbtn">✦ AIで思考を解き明かす</button>
   <button class="connbtn" id="connbtn">接続モード</button>
+  <button class="connbtn" id="resetbtn" style="color:rgba(255,69,58,.6);border-color:rgba(255,69,58,.2);">思考をリセット</button>
   <div class="sbinfo">
     <span id="nc">— 思考</span>
     <span id="lc">— 接続</span>
@@ -386,23 +403,28 @@ const isMobile=()=>window.innerWidth<=768;
 const W=()=>isMobile()?window.innerWidth:window.innerWidth-320;
 const H=()=>isMobile()?window.innerHeight*0.54:window.innerHeight;
 
-/* ── Mobile keyboard handling ── */
+/* ── Mobile keyboard: push sidebar up so input stays visible ── */
 if(isMobile()&&window.visualViewport){
   const sb=document.getElementById('sb');
   const sync=()=>{
     const vv=window.visualViewport;
     const kb=window.innerHeight-(vv.offsetTop+vv.height);
     sb.style.top=(vv.height*0.54+vv.offsetTop)+'px';
-    sb.style.bottom=kb>50?kb+'px':'0';
+    /* キーボードが出ているときは bottom を keyboard高さ分だけ上げない
+       → スクロールで届けるため bottom:0 固定のまま */
+    sb.style.bottom='0';
   };
   window.visualViewport.addEventListener('resize',sync);
   window.visualViewport.addEventListener('scroll',sync);
   document.getElementById('inp').addEventListener('blur',()=>{
-    setTimeout(()=>{const sb=document.getElementById('sb');sb.style.top='54vh';sb.style.bottom='0';},250);
+    setTimeout(()=>{
+      const sb=document.getElementById('sb');
+      sb.style.top='54vh';
+      sb.style.bottom='0';
+    },250);
   });
 }
 
-/* ── Node types ── */
 const TYPES={
   '思考':     {hex:0x4A90E2,css:'#4A90E2',em:0x0d1f3c,glow:'rgba(74,144,226,.35)'},
   '会話':     {hex:0x34C759,css:'#34C759',em:0x0a2e12,glow:'rgba(52,199,89,.35)'},
@@ -425,13 +447,11 @@ document.getElementById('apistat').onclick=()=>{
   else document.getElementById('apimod').classList.add('show');
 };
 
-/* ── Three.js ── */
 const cv=document.getElementById('cv');
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2.5));
 renderer.setSize(W(),H());
 renderer.setClearColor(0x000000);
-renderer.shadowMap.enabled=false;
 
 const scene=new THREE.Scene();
 scene.fog=new THREE.FogExp2(0x000000,0.0012);
@@ -441,15 +461,13 @@ let camTheta=0.4,camPhi=1.1,camR=500;
 function posCamera(){camera.position.set(camR*Math.sin(camPhi)*Math.cos(camTheta),camR*Math.cos(camPhi),camR*Math.sin(camPhi)*Math.sin(camTheta));camera.lookAt(0,0,0);}
 posCamera();
 
-/* Lighting */
 scene.add(new THREE.AmbientLight(0x0a0818,3));
 const pl1=new THREE.PointLight(0x7B61FF,4,1000);pl1.position.set(300,200,100);scene.add(pl1);
 const pl2=new THREE.PointLight(0x1e3a8a,3,800);pl2.position.set(-250,-100,250);scene.add(pl2);
 const pl3=new THREE.PointLight(0x4c0519,2.5,600);pl3.position.set(0,-300,-200);scene.add(pl3);
 
-/* Stars */
-{const N=3000,pos=new Float32Array(N*3),sz=new Float32Array(N);
-for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;sz[i]=Math.random()>.85?2.2:1.2;}
+{const N=3000,pos=new Float32Array(N*3);
+for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;}
 const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
 scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:1.3,transparent:true,opacity:.55,sizeAttenuation:false})));}
 
@@ -458,19 +476,15 @@ function nr(n){return 15+Math.min(n.connections*5,28);}
 
 function mkNode(n){
   const tc=TYPES[n.type]||TYPES['思考'],r=nr(n);
-  /* Core sphere */
   const core=new THREE.Mesh(
     new THREE.SphereGeometry(r,32,32),
     new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,emissiveIntensity:1.2,shininess:120,specular:0xffffff})
   );
   core.position.set(n.x,n.y,n.z);core.userData.nid=n.id;scene.add(core);
-  /* Glow layer 1 */
   const g1Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.12,side:THREE.BackSide});
   core.add(new THREE.Mesh(new THREE.SphereGeometry(r*2.4,16,16),g1Mat));
-  /* Glow layer 2 (outer) */
   const g2Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.05,side:THREE.BackSide});
   core.add(new THREE.Mesh(new THREE.SphereGeometry(r*3.8,12,12),g2Mat));
-  /* Label */
   const lbl=document.createElement('div');lbl.className='nlb';
   lbl.textContent=n.text.length>14?n.text.slice(0,14)+'…':n.text;
   document.getElementById('lyr').appendChild(lbl);
@@ -506,9 +520,9 @@ function syncScene(){
     if(r!==nm.r){nm.core.geometry.dispose();nm.core.geometry=new THREE.SphereGeometry(r,32,32);nm.r=r;}
     const sel=selIds.includes(nm.id);
     nm.core.material.emissiveIntensity=sel?2.5:1.2;
-    const isObstacle=nm.type==='障害';
-    nm.g1Mat.opacity=isObstacle?0.2+0.12*Math.sin(af*.06):sel?0.28:0.12;
-    nm.g2Mat.opacity=isObstacle?0.08+0.05*Math.sin(af*.06+1):sel?0.1:0.05;
+    const isObs=nm.type==='障害';
+    nm.g1Mat.opacity=isObs?0.2+0.12*Math.sin(af*.06):sel?0.28:0.12;
+    nm.g2Mat.opacity=isObs?0.08+0.05*Math.sin(af*.06+1):sel?0.1:0.05;
   }
   for(const ll of linkLines){
     const s=nodes.find(n=>n.id===ll.src),t=nodes.find(n=>n.id===ll.tgt);if(!s||!t)continue;
@@ -544,7 +558,6 @@ function addLink(sId,tId){
   mkLink(sId,tId);pf=0;updateUI();checkAutoInsight(sId,tId);
 }
 
-/* Auto insight */
 let aiCD=false;
 async function checkAutoInsight(sId,tId){
   if(!apiKey||aiCD)return;
@@ -563,7 +576,6 @@ async function checkAutoInsight(sId,tId){
   }catch(e){toast.textContent='接続エラー';setTimeout(()=>toast.classList.remove('show'),3000);}
 }
 
-/* Interaction */
 let drag=false,dd=0,pmx=0,pmy=0;
 cv.addEventListener('mousedown',e=>{drag=true;dd=0;pmx=e.clientX;pmy=e.clientY;});
 cv.addEventListener('touchstart',e=>{const t=e.touches[0];drag=true;dd=0;pmx=t.clientX;pmy=t.clientY;},{passive:true});
@@ -599,7 +611,7 @@ document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(doc
 document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
 window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
 
-/* ── Voice input ── iOSでの核心的な修正: touchendで直接start() ── */
+/* ── Voice input ── iOS fix: touchend で直接 start() ── */
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let recog=null,isRec=false;
 if(SR){
@@ -643,17 +655,14 @@ function stopRec(){
   document.getElementById('micst').classList.remove('on');
   try{recog.stop();}catch(e){}
 }
-
 const micBtn=document.getElementById('micbtn');
-/* モバイル：touchendで直接呼ぶ（iOSの音声認識はユーザージェスチャー内でstartが必要）*/
 micBtn.addEventListener('touchend',e=>{
   e.preventDefault();e.stopPropagation();
   if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}
   isRec?stopRec():startRec();
 },{passive:false});
-/* デスクトップ：clickで呼ぶ */
 micBtn.addEventListener('click',e=>{
-  if('ontouchstart' in window)return;/* touchendで処理済み */
+  if('ontouchstart' in window)return;
   if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}
   isRec?stopRec():startRec();
 });
@@ -677,7 +686,6 @@ async function startTour(){
   }catch(e){nrEl.className='tptxt';nrEl.textContent=`エラー: ${e.message}`;}
 }
 
-/* ── Render loop ── */
 function animate(){
   requestAnimationFrame(animate);af++;
   tick();syncScene();syncLabels();
@@ -685,6 +693,60 @@ function animate(){
   pl2.position.x=Math.cos(af*.002+2)*280;pl2.position.z=Math.sin(af*.002+2)*280;
   renderer.render(scene,camera);
 }
+/* ── 永続化：保存・読み込み・リセット ── */
+const STORE_KEY='brain_data_v1';
+
+function saveState(){
+  try{
+    localStorage.setItem(STORE_KEY,JSON.stringify({
+      nodes:nodes.map(n=>({id:n.id,text:n.text,type:n.type,x:n.x,y:n.y,z:n.z,connections:n.connections,ts:n.ts})),
+      links,idCtr
+    }));
+  }catch(e){}
+}
+
+function loadState(){
+  try{
+    const raw=localStorage.getItem(STORE_KEY);
+    if(!raw)return;
+    const data=JSON.parse(raw);
+    if(!data||!Array.isArray(data.nodes))return;
+    idCtr=data.idCtr||0;
+    /* ノードを復元 */
+    data.nodes.forEach(n=>{
+      const node={...n,vx:0,vy:0,vz:0};
+      nodes.push(node);mkNode(node);
+    });
+    /* リンクを復元 */
+    data.links.forEach(l=>{
+      links.push(l);mkLink(l.src,l.tgt);
+    });
+    if(nodes.length)document.getElementById('empty').style.display='none';
+    pf=0;
+  }catch(e){}
+}
+
+function resetState(){
+  if(!confirm('すべての思考をリセットしますか？この操作は取り消せません。'))return;
+  /* Three.js オブジェクト削除 */
+  nodeMeshes.forEach(nm=>{scene.remove(nm.core);nm.label.remove();});
+  linkLines.forEach(ll=>scene.remove(ll.line));
+  nodeMeshes.length=0;linkLines.length=0;
+  nodes=[];links=[];idCtr=0;selIds=[];
+  localStorage.removeItem(STORE_KEY);
+  document.getElementById('empty').style.display='flex';
+  updateUI();
+}
+
+/* updateUI の末尾で保存 */
+const _updateUI=updateUI;
+updateUI=function(){_updateUI();saveState();};
+
+/* リセットボタン */
+document.getElementById('resetbtn').onclick=resetState;
+
+/* 起動時に復元してからアニメーション開始 */
+loadState();
 animate();updateUI();
 </script>
 </body>
