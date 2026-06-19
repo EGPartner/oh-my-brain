@@ -2,30 +2,34 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 <title>🧠 脳内空間 3D</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP',system-ui,sans-serif;overflow:hidden;height:100vh;user-select:none;}
+html,body{height:100%;overflow:hidden;background:#000510;}
+body{color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP',system-ui,sans-serif;user-select:none;}
+
+/* Desktop */
 #cv{position:absolute;left:0;top:0;width:calc(100vw - 300px);height:100vh;cursor:grab;}
 #cv:active{cursor:grabbing;}
 #lyr{position:absolute;left:0;top:0;width:calc(100vw - 300px);height:100vh;pointer-events:none;overflow:hidden;}
 .nlb{position:absolute;transform:translateX(-50%);font-size:10px;color:rgba(210,200,255,.88);text-shadow:0 0 8px #000,0 0 16px #000;white-space:nowrap;pointer-events:none;}
-#sb{position:absolute;right:0;top:0;bottom:0;width:300px;background:rgba(4,2,14,.97);border-left:1px solid rgba(100,60,200,.4);display:flex;flex-direction:column;z-index:50;transition:bottom .15s;}
-.sbh{padding:16px 15px 10px;border-bottom:1px solid rgba(100,60,200,.2);}
+
+#sb{position:absolute;right:0;top:0;bottom:0;width:300px;background:rgba(4,2,14,.97);border-left:1px solid rgba(100,60,200,.4);display:flex;flex-direction:column;z-index:50;}
+.sbh{padding:16px 15px 10px;border-bottom:1px solid rgba(100,60,200,.2);flex-shrink:0;}
 .sbh h1{font-size:11px;font-weight:700;color:#9070ff;letter-spacing:.15em;text-transform:uppercase;}
 .sbh p{font-size:10px;color:#4a4a8a;margin-top:2px;}
-.sbi{padding:10px 14px;border-bottom:1px solid rgba(100,60,200,.15);}
+.sbi{padding:10px 14px;border-bottom:1px solid rgba(100,60,200,.15);flex-shrink:0;}
 .inp-wrap{position:relative;}
-#inp{width:100%;background:rgba(18,10,48,.8);border:1px solid rgba(100,60,200,.4);border-radius:8px;color:#e0e0ff;font-size:12px;font-family:inherit;padding:8px 36px 8px 10px;resize:none;outline:none;line-height:1.5;}
+#inp{width:100%;background:rgba(18,10,48,.8);border:1px solid rgba(100,60,200,.4);border-radius:8px;color:#e0e0ff;font-size:16px;font-family:inherit;padding:8px 36px 8px 10px;resize:none;outline:none;line-height:1.5;-webkit-appearance:none;}
 #inp:focus{border-color:rgba(150,90,255,.8);}
-#inp::placeholder{color:#353565;}
-#micbtn{position:absolute;right:7px;bottom:7px;width:26px;height:26px;border-radius:50%;border:1px solid rgba(100,60,200,.5);background:rgba(18,10,48,.9);color:#5a5a90;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0;line-height:1;}
-#micbtn:hover{border-color:rgba(150,90,255,.7);color:#9070ff;}
+#inp::placeholder{color:#353565;font-size:13px;}
+#micbtn{position:absolute;right:7px;bottom:7px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(100,60,200,.5);background:rgba(18,10,48,.9);color:#5a5a90;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0;line-height:1;}
 #micbtn.rec{background:rgba(180,30,30,.75);border-color:rgba(255,80,80,.8);color:#fff;animation:mpulse 1s ease-in-out infinite;}
 @keyframes mpulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,50,.5);}50%{box-shadow:0 0 0 7px rgba(220,50,50,0);}}
 #micst{font-size:10px;color:#5050a0;margin-top:4px;min-height:14px;}
 #micst.on{color:#ff6060;}
+
 .trow{display:flex;gap:3px;margin-top:7px;flex-wrap:wrap;}
 .tb{flex:1;min-width:44px;padding:4px 2px;border-radius:6px;border:1px solid transparent;background:rgba(18,10,48,.6);color:#5a5a90;font-size:9px;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s;}
 .tb.on{color:#fff;}
@@ -34,35 +38,34 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 .tb[data-t="インサイト"].on{background:rgba(243,156,18,.35);border-color:rgba(243,156,18,.7);}
 .tb[data-t="疑問"].on{background:rgba(233,30,140,.35);border-color:rgba(233,30,140,.7);}
 .tb[data-t="障害"].on{background:rgba(231,76,60,.4);border-color:rgba(231,76,60,.9);}
-#addbtn{width:100%;margin-top:7px;padding:8px;background:rgba(90,45,190,.55);border:1px solid rgba(140,85,255,.5);border-radius:8px;color:#fff;font-size:11px;font-family:inherit;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .15s;}
-#addbtn:hover{background:rgba(120,65,250,.65);}
+
+#addbtn{width:100%;margin-top:7px;padding:10px;background:rgba(90,45,190,.55);border:1px solid rgba(140,85,255,.5);border-radius:8px;color:#fff;font-size:13px;font-family:inherit;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .15s;}
+#addbtn:active{background:rgba(120,65,250,.75);}
+
 .nlist{flex:1;overflow-y:auto;padding:7px 13px;}
 .nlist::-webkit-scrollbar{width:3px;}
 .nlist::-webkit-scrollbar-thumb{background:rgba(100,60,200,.4);border-radius:2px;}
-.ni{padding:8px 10px;margin-bottom:5px;background:rgba(12,8,32,.7);border:1px solid rgba(65,45,125,.3);border-radius:7px;cursor:pointer;transition:all .15s;}
-.ni:hover{border-color:rgba(140,85,255,.5);}
+.ni{padding:8px 10px;margin-bottom:5px;background:rgba(12,8,32,.7);border:1px solid rgba(65,45,125,.3);border-radius:7px;cursor:pointer;}
 .ni.sel{border-color:rgba(140,85,255,.9);background:rgba(45,22,95,.5);}
 .ni .ntag{font-size:8px;font-weight:700;letter-spacing:.1em;margin-bottom:3px;}
 .ni .ntxt{font-size:11px;color:#a8a8d0;line-height:1.4;}
 .ni .ncon{font-size:9px;color:#383870;margin-top:3px;}
-#tourbtn{margin:7px 13px 4px;padding:12px;background:linear-gradient(135deg,rgba(75,38,158,.75),rgba(38,75,178,.75));border:1px solid rgba(120,95,255,.65);border-radius:10px;color:#fff;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.05em;transition:all .2s;text-align:center;}
-#tourbtn:hover{background:linear-gradient(135deg,rgba(100,50,200,.85),rgba(50,100,220,.85));transform:translateY(-1px);}
-#tourbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
-.connbtn{margin:0 13px 5px;padding:7px;background:rgba(12,8,32,.6);border:1px solid rgba(75,48,155,.4);border-radius:8px;color:#606098;font-size:11px;font-family:inherit;cursor:pointer;transition:all .15s;text-align:center;}
+
+#tourbtn{margin:7px 13px 4px;padding:12px;background:linear-gradient(135deg,rgba(75,38,158,.75),rgba(38,75,178,.75));border:1px solid rgba(120,95,255,.65);border-radius:10px;color:#fff;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.05em;transition:all .2s;text-align:center;flex-shrink:0;}
+#tourbtn:disabled{opacity:.4;cursor:not-allowed;}
+.connbtn{margin:0 13px 5px;padding:7px;background:rgba(12,8,32,.6);border:1px solid rgba(75,48,155,.4);border-radius:8px;color:#606098;font-size:11px;font-family:inherit;cursor:pointer;transition:all .15s;text-align:center;flex-shrink:0;}
 .connbtn.on{background:rgba(75,38,158,.4);border-color:rgba(140,85,255,.65);color:#b090ff;}
-.sbinfo{padding:7px 14px;border-top:1px solid rgba(75,48,155,.15);font-size:9px;color:#2a2a5a;display:flex;justify-content:space-between;align-items:center;}
-#apistat{font-size:9px;cursor:pointer;transition:color .15s;}
+.sbinfo{padding:7px 14px;border-top:1px solid rgba(75,48,155,.15);font-size:9px;color:#2a2a5a;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+#apistat{font-size:9px;cursor:pointer;}
 #apistat.set{color:#40bb80;}
-#apistat.set:hover{color:#ff8080;}
+
+/* Tour panel */
 #tp{position:absolute;left:0;right:300px;bottom:0;height:0;background:rgba(3,1,12,.97);border-top:1px solid rgba(100,60,200,.45);z-index:40;overflow:hidden;transition:height .45s cubic-bezier(.2,0,.1,1);display:flex;flex-direction:column;}
 #tp.open{height:50vh;}
 .tph{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 8px;border-bottom:1px solid rgba(75,48,155,.2);flex-shrink:0;}
 .tph h2{font-size:11px;font-weight:700;color:#9070ff;letter-spacing:.12em;text-transform:uppercase;}
 .tpclose{background:none;border:none;color:#4a4a88;cursor:pointer;font-size:16px;line-height:1;font-family:inherit;}
-.tpclose:hover{color:#b090ff;}
 .tpbody{flex:1;overflow-y:auto;padding:14px 20px;display:flex;gap:18px;}
-.tpbody::-webkit-scrollbar{width:4px;}
-.tpbody::-webkit-scrollbar-thumb{background:rgba(100,60,200,.4);border-radius:2px;}
 .tpcol{flex:1;min-width:0;}
 .tpcol h3{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6055a8;margin-bottom:8px;}
 .tptxt{font-size:12px;color:#b8b0e0;line-height:1.85;white-space:pre-wrap;}
@@ -70,8 +73,9 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
 .restxt{font-size:12px;color:#d0c8f0;line-height:1.85;white-space:pre-wrap;}
 .copybtn{font-size:9px;color:#5050a0;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;}
-.copybtn:hover{color:#9080c0;}
-#apimod{position:absolute;inset:0;background:rgba(0,0,8,.88);display:none;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(10px);}
+
+/* API modal */
+#apimod{position:fixed;inset:0;background:rgba(0,0,8,.88);display:none;align-items:center;justify-content:center;z-index:300;backdrop-filter:blur(10px);}
 #apimod.show{display:flex;}
 .mbox{background:rgba(6,3,22,.98);border:1px solid rgba(120,80,220,.55);border-radius:16px;padding:28px 30px;width:440px;max-width:92vw;}
 .mbox h3{font-size:14px;font-weight:700;color:#9870f0;margin-bottom:8px;}
@@ -86,38 +90,51 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 .mbtn.p{background:rgba(95,48,195,.65);border-color:rgba(140,90,255,.65);color:#fff;}
 .mbtn.s{background:transparent;border-color:rgba(75,48,150,.4);color:#6060a0;}
 .mbtn.copy{width:100%;background:linear-gradient(135deg,rgba(38,80,160,.7),rgba(30,120,100,.7));border-color:rgba(60,180,140,.6);color:#80ffcc;font-size:12px;font-family:inherit;cursor:pointer;font-weight:700;padding:11px;border-radius:10px;border:1px solid;}
-.mbtn.copy:hover{background:linear-gradient(135deg,rgba(50,100,190,.8),rgba(40,150,120,.8));}
 #copyfb{font-size:10px;color:#40cc90;text-align:center;min-height:16px;margin-top:6px;}
+
+/* Tooltips */
 #tip{position:absolute;background:rgba(6,3,20,.95);border:1px solid rgba(120,80,220,.5);border-radius:10px;padding:9px 13px;max-width:200px;font-size:11px;color:#e0e0ff;pointer-events:none;opacity:0;transition:opacity .15s;z-index:60;line-height:1.55;}
 #tip.show{opacity:1;}
-#cnhint{position:absolute;bottom:18px;left:calc(50% - 150px);width:300px;background:rgba(75,38,158,.82);border:1px solid rgba(140,90,255,.65);border-radius:20px;padding:8px 20px;font-size:11px;color:#c0a0ff;pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;backdrop-filter:blur(8px);text-align:center;}
+#cnhint{position:absolute;bottom:18px;left:calc(50% - 150px);width:300px;background:rgba(75,38,158,.82);border:1px solid rgba(140,90,255,.65);border-radius:20px;padding:8px 20px;font-size:11px;color:#c0a0ff;pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;text-align:center;}
 #cnhint.show{opacity:1;}
-#aitoast{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);background:rgba(18,10,48,.97);border:1px solid rgba(243,156,18,.6);border-radius:24px;padding:9px 20px;font-size:11px;color:#f39c12;pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;backdrop-filter:blur(10px);}
+#aitoast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:rgba(18,10,48,.97);border:1px solid rgba(243,156,18,.6);border-radius:24px;padding:9px 20px;font-size:11px;color:#f39c12;pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;}
 #aitoast.show{opacity:1;}
 #empty{position:absolute;left:0;top:0;width:calc(100vw - 300px);height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;pointer-events:none;}
 #empty p{font-size:13px;color:#2a2a5a;text-align:center;line-height:1.8;}
 #empty .big{font-size:32px;}
+
+/* ===== MOBILE ===== */
 @media(max-width:768px){
   #cv{width:100vw;height:52vh;}
   #lyr{width:100vw;height:52vh;}
   #empty{width:100vw;height:52vh;}
-  #sb{top:52vh;right:0;left:0;bottom:0;width:100%;height:auto;border-left:none;border-top:1px solid rgba(100,60,200,.4);}
+
+  /* サイドバーを fixed にしてキーボードで動かせるようにする */
+  #sb{
+    position:fixed;
+    top:52vh;
+    left:0;right:0;bottom:0;
+    width:100%;
+    border-left:none;
+    border-top:1px solid rgba(100,60,200,.4);
+    overflow:hidden;
+  }
   .sbh{display:none;}
   .nlist{display:none;}
-  #tourbtn{margin:7px 8px 3px;font-size:11px;}
+  #tourbtn{margin:6px 8px 3px;font-size:11px;padding:10px;}
   .connbtn{margin:0 8px 4px;}
   #tp{right:0;}
   .tpbody{flex-direction:column;}
+
+  /* 入力欄を大きめに */
+  #inp{font-size:16px;rows:2;}
 }
 </style>
 </head>
 <body>
 <canvas id="cv"></canvas>
 <div id="lyr"></div>
-<div id="empty">
-  <div class="big">🧠</div>
-  <p>今考えていることを<br>右の入力欄から追加してください</p>
-</div>
+<div id="empty"><div class="big">🧠</div><p>今考えていることを<br>下の入力欄から追加してください</p></div>
 
 <div id="sb">
   <div class="sbh">
@@ -126,7 +143,7 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
   </div>
   <div class="sbi">
     <div class="inp-wrap">
-      <textarea id="inp" rows="3" placeholder="今考えていることを入力...&#10;（Ctrl+Enter で追加）"></textarea>
+      <textarea id="inp" rows="2" placeholder="今考えていることを入力..."></textarea>
       <button id="micbtn" title="音声入力">🎤</button>
     </div>
     <div id="micst"></div>
@@ -150,25 +167,16 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 </div>
 
 <div id="tp">
-  <div class="tph">
-    <h2>🎯 思考ツアー</h2>
-    <button class="tpclose" id="tpclose">✕</button>
-  </div>
+  <div class="tph"><h2>🎯 思考ツアー</h2><button class="tpclose" id="tpclose">✕</button></div>
   <div class="tpbody">
-    <div class="tpcol">
-      <h3>📖 思考の全体像 <button class="copybtn" id="copynr">コピー</button></h3>
-      <div class="tptxt" id="nrtxt"></div>
-    </div>
-    <div class="tpcol">
-      <h3>🔑 解決の道筋 <button class="copybtn" id="copyrs">コピー</button></h3>
-      <div class="restxt" id="rstxt"></div>
-    </div>
+    <div class="tpcol"><h3>📖 思考の全体像 <button class="copybtn" id="copynr">コピー</button></h3><div class="tptxt" id="nrtxt"></div></div>
+    <div class="tpcol"><h3>🔑 解決の道筋 <button class="copybtn" id="copyrs">コピー</button></h3><div class="restxt" id="rstxt"></div></div>
   </div>
 </div>
 
 <div id="tip"></div>
 <div id="cnhint">ノードをクリックして接続元を選択</div>
-<div id="aitoast">✨ 自動インサイトを生成中...</div>
+<div id="aitoast"></div>
 
 <div id="apimod">
   <div class="mbox">
@@ -176,7 +184,7 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
     <p>2つの方法でAIに分析させられます。</p>
     <button class="mbtn copy" id="copyprompt">📋 Coworkにコピーして分析（無料・推奨）</button>
     <div id="copyfb"></div>
-    <p style="margin-top:10px;font-size:10px;color:#505088;">↑ コピー後、CoworkのチャットにそのままペーストするとAIが分析します。</p>
+    <p style="margin-top:10px;font-size:10px;color:#505088;">↑ コピー後、CoworkのチャットにペーストするとAIが分析します。</p>
     <div class="divider"><span>または APIキーで直接分析</span></div>
     <p style="font-size:10px;color:#505088;margin-bottom:8px;">一度入力すると次回から自動入力されます。</p>
     <input type="password" id="apiin" placeholder="sk-ant-api03-...">
@@ -193,6 +201,47 @@ const isMobile=()=>window.innerWidth<=768;
 const W=()=>isMobile()?window.innerWidth:window.innerWidth-300;
 const H=()=>isMobile()?window.innerHeight*0.52:window.innerHeight;
 
+// ===== キーボード対応（iOS完全対応）=====
+(function(){
+  if(!isMobile())return;
+  const sb=document.getElementById('sb');
+
+  function onVVResize(){
+    const vv=window.visualViewport;
+    if(!vv)return;
+    // ビジュアルビューポートの上端からのオフセット＋高さでキーボードを計算
+    const kbHeight=window.innerHeight-(vv.offsetTop+vv.height);
+    const sbTop=vv.height*0.52+vv.offsetTop;
+    sb.style.top=sbTop+'px';
+    sb.style.bottom=kbHeight>0?kbHeight+'px':'0px';
+  }
+
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize',onVVResize);
+    window.visualViewport.addEventListener('scroll',onVVResize);
+  }
+
+  // フォーカス時にスクロール防止
+  document.getElementById('inp').addEventListener('focus',()=>{
+    document.body.scrollTop=0;
+    document.documentElement.scrollTop=0;
+    setTimeout(()=>{
+      document.body.scrollTop=0;
+      document.documentElement.scrollTop=0;
+    },100);
+  });
+
+  // blur時に元に戻す
+  document.getElementById('inp').addEventListener('blur',()=>{
+    setTimeout(()=>{
+      if(window.visualViewport){
+        sb.style.top='52vh';
+        sb.style.bottom='0';
+      }
+    },150);
+  });
+})();
+
 const TYPES={
   '思考':      {hex:0x3a7bd5,css:'#3a7bd5',em:0x122060},
   '会話':      {hex:0x2ecc71,css:'#2ecc71',em:0x0a4020},
@@ -206,8 +255,8 @@ let apiKey=localStorage.getItem('brain_api_key')||null;
 
 function updateApiStat(){
   const el=document.getElementById('apistat');
-  if(apiKey){el.textContent='🔑 設定済み ✓';el.className='set';el.title='クリックしてリセット';}
-  else{el.textContent='🔑 未設定';el.className='';el.title='クリックして設定';}
+  if(apiKey){el.textContent='🔑 設定済み ✓';el.className='set';}
+  else{el.textContent='🔑 未設定';el.className='';}
 }
 updateApiStat();
 document.getElementById('apistat').onclick=()=>{
@@ -215,6 +264,7 @@ document.getElementById('apistat').onclick=()=>{
   else document.getElementById('apimod').classList.add('show');
 };
 
+// Three.js
 const cv=document.getElementById('cv');
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -226,12 +276,11 @@ const camera=new THREE.PerspectiveCamera(58,W()/H(),1,4000);
 let camTheta=0.4,camPhi=1.05,camR=480;
 function posCamera(){camera.position.set(camR*Math.sin(camPhi)*Math.cos(camTheta),camR*Math.cos(camPhi),camR*Math.sin(camPhi)*Math.sin(camTheta));camera.lookAt(0,0,0);}
 posCamera();
-
 scene.add(new THREE.AmbientLight(0x1a0d33,2.2));
 const pl1=new THREE.PointLight(0x5533ff,2.5,800);pl1.position.set(250,200,100);scene.add(pl1);
-const pl2=new THREE.PointLight(0x2244bb,2,600);pl2.position.set(-200,-80,220);scene.add(pl2);
-const pl3=new THREE.PointLight(0x440d22,1.8,500);pl3.position.set(0,-250,-150);scene.add(pl3);
-
+scene.add(new THREE.PointLight(0x2244bb,2,600)).position?.set(-200,-80,220);
+const pl2=scene.children[scene.children.length-1];pl2.position?.set(-200,-80,220);
+scene.add(new THREE.PointLight(0x440d22,1.8,500)).position?.set(0,-250,-150);
 {const N=2000,pos=new Float32Array(N*3),clr=new Float32Array(N*3);
 for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*2400;pos[i*3+1]=(Math.random()-.5)*2400;pos[i*3+2]=(Math.random()-.5)*2400;const c=Math.random()>.7?[.7,.7,1]:[1,1,1];clr[i*3]=c[0];clr[i*3+1]=c[1];clr[i*3+2]=c[2];}
 const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(pos,3));sg.setAttribute('color',new THREE.BufferAttribute(clr,3));
@@ -242,8 +291,7 @@ function nodeRadius(n){return 17+Math.min(n.connections*4,22);}
 
 function mkNodeMesh(n){
   const tc=TYPES[n.type]||TYPES['思考'],r=nodeRadius(n);
-  const mat=new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,shininess:90});
-  const mesh=new THREE.Mesh(new THREE.SphereGeometry(r,24,24),mat);
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(r,24,24),new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,shininess:90}));
   mesh.position.set(n.x,n.y,n.z);mesh.userData.nid=n.id;scene.add(mesh);
   const gMat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.14,side:THREE.BackSide});
   const gMesh=new THREE.Mesh(new THREE.SphereGeometry(r*2.2,16,16),gMat);
@@ -253,7 +301,6 @@ function mkNodeMesh(n){
   document.getElementById('lyr').appendChild(lbl);
   nodeMeshes.push({id:n.id,mesh,gMesh,gMat,label:lbl,r,type:n.type});
 }
-
 function mkLinkLine(srcId,tgtId){
   const src=nodes.find(n=>n.id===srcId),tgt=nodes.find(n=>n.id===tgtId);if(!src||!tgt)return;
   const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(src.x,src.y,src.z),new THREE.Vector3(tgt.x,tgt.y,tgt.z)]);
@@ -274,7 +321,6 @@ function tick(){
     n.vx=cl(n.vx,fx);n.vy=cl(n.vy,fy);n.vz=cl(n.vz,fz);n.x+=n.vx;n.y+=n.vy;n.z+=n.vz;
   }
 }
-
 const tmpV=new THREE.Vector3();
 function syncScene(){
   for(const nm of nodeMeshes){
@@ -282,8 +328,8 @@ function syncScene(){
     nm.mesh.position.set(n.x,n.y,n.z);
     const r=nodeRadius(n);
     if(r!==nm.r){nm.mesh.geometry.dispose();nm.mesh.geometry=new THREE.SphereGeometry(r,24,24);nm.gMesh.geometry.dispose();nm.gMesh.geometry=new THREE.SphereGeometry(r*2.2,16,16);nm.r=r;}
-    const sel=selIds.includes(nm.id);nm.mesh.material.emissiveIntensity=sel?1.6:1;
-    nm.gMat.opacity=nm.type==='障害'?0.18+0.14*Math.sin(animFrame*.06):sel?0.32:0.14;
+    nm.mesh.material.emissiveIntensity=selIds.includes(nm.id)?1.6:1;
+    nm.gMat.opacity=nm.type==='障害'?0.18+0.14*Math.sin(animFrame*.06):selIds.includes(nm.id)?0.32:0.14;
   }
   for(const ll of linkLines){
     const src=nodes.find(n=>n.id===ll.src),tgt=nodes.find(n=>n.id===ll.tgt);if(!src||!tgt)continue;
@@ -292,7 +338,6 @@ function syncScene(){
     ll.mat.opacity=hl?.82:.38;ll.mat.color.setHex(hl?0xc090ff:0x6644cc);
   }
 }
-
 function syncLabels(){
   const cw=W(),ch=H();
   for(const nm of nodeMeshes){
@@ -325,40 +370,32 @@ function addLink(srcId,tgtId){
 }
 
 // 自動インサイト
-let autoInsightCooldown=false;
+let aiCooldown=false;
 async function checkAutoInsight(srcId,tgtId){
-  if(!apiKey||autoInsightCooldown)return;
-  const src=nodes.find(n=>n.id===srcId),tgt=nodes.find(n=>n.id===tgtId);
-  if(!src||!tgt)return;
+  if(!apiKey||aiCooldown)return;
+  const src=nodes.find(n=>n.id===srcId),tgt=nodes.find(n=>n.id===tgtId);if(!src||!tgt)return;
   const cond1=src.connections>=2&&tgt.connections>=2;
   const cond2=src.type==='障害'||tgt.type==='障害';
   if(!cond1&&!cond2)return;
-  autoInsightCooldown=true;
-  setTimeout(()=>{autoInsightCooldown=false;},15000);
+  aiCooldown=true;setTimeout(()=>{aiCooldown=false;},15000);
   const toast=document.getElementById('aitoast');
   toast.textContent='✨ 自動インサイトを生成中...';toast.classList.add('show');
   try{
     const relIds=new Set([srcId,tgtId]);
     links.forEach(l=>{if(l.src===srcId||l.tgt===srcId||l.src===tgtId||l.tgt===tgtId){relIds.add(l.src);relIds.add(l.tgt);}});
-    const relNodes=[...relIds].map(id=>nodes.find(n=>n.id===id)).filter(Boolean);
-    const nodeDesc=relNodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
+    const desc=[...relIds].map(id=>nodes.find(n=>n.id===id)).filter(Boolean).map(n=>`[${n.type}] ${n.text}`).join('\n');
     const reason=cond2?`「${src.type==='障害'?src.text:tgt.text}」という障害が接続されました`:`「${src.text}」と「${tgt.text}」が多重接続されました`;
-    const insight=await callClaude(`思考マップで新しい接続が生まれました。\n理由: ${reason}\n\n関連ノード:\n${nodeDesc}\n\nこの接続から生まれる洞察・突破口を1〜2文で簡潔に日本語で。「〜ではないか」「〜かもしれない」形式で。`);
-    const mx=(src.x+tgt.x)/2+(Math.random()-.5)*80;
-    const my=(src.y+tgt.y)/2+(Math.random()-.5)*80;
-    const mz=(src.z+tgt.z)/2+(Math.random()-.5)*80;
-    const iNode={id:++idCtr,text:insight.slice(0,60),type:'インサイト',x:mx,y:my,z:mz,vx:0,vy:0,vz:0,connections:0,ts:'✨ 自動'};
+    const insight=await callClaude(`思考マップで新しい接続が生まれました。\n理由: ${reason}\n関連ノード:\n${desc}\n\nこの接続から生まれる洞察・突破口を1〜2文で簡潔に日本語で。「〜ではないか」「〜かもしれない」形式で。`);
+    const iNode={id:++idCtr,text:insight.slice(0,60),type:'インサイト',x:(src.x+tgt.x)/2+(Math.random()-.5)*80,y:(src.y+tgt.y)/2+(Math.random()-.5)*80,z:(src.z+tgt.z)/2+(Math.random()-.5)*80,vx:0,vy:0,vz:0,connections:0,ts:'✨ 自動'};
     nodes.push(iNode);mkNodeMesh(iNode);
     addLink(iNode.id,srcId);addLink(iNode.id,tgtId);
     physFrames=0;updateUI();
     toast.textContent='✨ 新しいインサイトが生まれました！';
     setTimeout(()=>toast.classList.remove('show'),3000);
-  }catch(e){
-    toast.textContent='⚠️ インサイト生成に失敗しました';
-    setTimeout(()=>toast.classList.remove('show'),3000);
-  }
+  }catch(e){toast.textContent='⚠️ 生成に失敗しました';setTimeout(()=>toast.classList.remove('show'),3000);}
 }
 
+// インタラクション
 let dragging=false,dragDist=0,prevMX=0,prevMY=0;
 cv.addEventListener('mousedown',e=>{dragging=true;dragDist=0;prevMX=e.clientX;prevMY=e.clientY;});
 cv.addEventListener('touchstart',e=>{const t=e.touches[0];dragging=true;dragDist=0;prevMX=t.clientX;prevMY=t.clientY;},{passive:true});
@@ -370,7 +407,7 @@ window.addEventListener('mousemove',e=>{
   raycaster.setFromCamera(mptr,camera);
   const hits=raycaster.intersectObjects(nodeMeshes.map(m=>m.mesh),false);
   const tip=document.getElementById('tip');
-  if(hits.length){const nid=hits[0].object.userData.nid;const n=nodes.find(x=>x.id===nid);if(n){const tc=TYPES[n.type]||TYPES['思考'];const cc=links.filter(l=>l.src===nid||l.tgt===nid).map(l=>{const oid=l.src===nid?l.tgt:l.src;return nodes.find(x=>x.id===oid)?.text?.slice(0,14);}).filter(Boolean).join('、');tip.innerHTML=`<span style="color:${tc.css};font-size:9px;">${n.type} · ${n.ts}</span><br>${n.text}`+(cc?`<br><span style="color:#4a4a80;font-size:9px;">↔ ${cc}</span>`:'');tip.style.left=Math.min(e.clientX+16,W()-215)+'px';tip.style.top=Math.min(e.clientY-8,H()-100)+'px';tip.classList.add('show');}}
+  if(hits.length){const nid=hits[0].object.userData.nid;const n=nodes.find(x=>x.id===nid);if(n){const tc=TYPES[n.type]||TYPES['思考'];tip.innerHTML=`<span style="color:${tc.css};font-size:9px;">${n.type} · ${n.ts}</span><br>${n.text}`;tip.style.left=Math.min(e.clientX+16,W()-215)+'px';tip.style.top=Math.min(e.clientY-8,H()-80)+'px';tip.classList.add('show');}}
   else tip.classList.remove('show');
 });
 window.addEventListener('touchmove',e=>{
@@ -393,11 +430,9 @@ function handleNodeClick(id){
   if(connMode){
     if(!selIds.length){selIds=[id];const n=nodes.find(x=>x.id===id);document.getElementById('cnhint').textContent=`「${n?.text?.slice(0,10)}」→ 接続先をクリック`;}
     else if(selIds[0]!==id){addLink(selIds[0],id);selIds=[];document.getElementById('cnhint').textContent='ノードをクリックして接続元を選択';}
-  } else {selIds=selIds.includes(id)?[]:[id];}
+  }else{selIds=selIds.includes(id)?[]:[id];}
   updateUI();
-  const el=document.querySelector(`.ni[data-id="${id}"]`);if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
 function updateUI(){
   const list=document.getElementById('nlist');list.innerHTML='';
   [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.dataset.id=n.id;d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">🔗 ${n.connections}個の接続</div>`:''}`;d.onclick=()=>handleNodeClick(n.id);list.appendChild(d);});
@@ -405,33 +440,14 @@ function updateUI(){
   document.getElementById('lc').textContent=`${links.length} 接続`;
   document.getElementById('tourbtn').disabled=nodes.length===0;
 }
-
 document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));b.classList.add('on');});
-document.getElementById('addbtn').onclick=()=>{const txt=document.getElementById('inp').value.trim();if(!txt)return;const t=document.querySelector('.tb.on').dataset.t;addNode(txt,t);document.getElementById('inp').value='';};
+document.getElementById('addbtn').onclick=()=>{const txt=document.getElementById('inp').value.trim();if(!txt)return;const t=document.querySelector('.tb.on').dataset.t;addNode(txt,t);document.getElementById('inp').value='';if(isMobile())document.getElementById('inp').blur();};
 document.getElementById('inp').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')document.getElementById('addbtn').click();});
 document.getElementById('connbtn').onclick=()=>{connMode=!connMode;document.getElementById('connbtn').classList.toggle('on',connMode);document.getElementById('cnhint').classList.toggle('show',connMode);if(!connMode){selIds=[];updateUI();}};
 document.getElementById('tpclose').onclick=()=>document.getElementById('tp').classList.remove('open');
 document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(document.getElementById('nrtxt').textContent);
 document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
 window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
-
-// キーボード対応（iOS）
-if(window.visualViewport){
-  window.visualViewport.addEventListener('resize',()=>{
-    if(!isMobile())return;
-    const gap=window.innerHeight-window.visualViewport.height;
-    document.getElementById('sb').style.bottom=gap>80?gap+'px':'0';
-    if(gap>80)setTimeout(()=>document.getElementById('inp').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-  });
-}
-document.getElementById('inp').addEventListener('focus',()=>{
-  if(!isMobile())return;
-  setTimeout(()=>document.getElementById('inp').scrollIntoView({behavior:'smooth',block:'nearest'}),350);
-});
-document.getElementById('inp').addEventListener('blur',()=>{
-  if(!isMobile())return;
-  setTimeout(()=>{document.getElementById('sb').style.bottom='0';},100);
-});
 
 // 音声入力（iOS対応）
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -440,39 +456,33 @@ if(SR){
   recog=new SR();recog.lang='ja-JP';recog.continuous=false;recog.interimResults=true;
   recog.onresult=e=>{const txt=Array.from(e.results).map(r=>r[0].transcript).join('');document.getElementById('inp').value=txt;if(e.results[e.results.length-1].isFinal)stopRec();};
   recog.onend=()=>stopRec();
-  recog.onerror=e=>{stopRec();const msg={'not-allowed':'マイクの許可が必要です','service-not-allowed':'設定→Safari→マイクをオンにしてください','no-speech':'音声が検出されませんでした','network':'ネットワークエラーです'};document.getElementById('micst').textContent='⚠️ '+(msg[e.error]||e.error);};
+  recog.onerror=e=>{stopRec();const msg={'not-allowed':'マイクの許可が必要です','service-not-allowed':'設定→Safari→マイクをオン','no-speech':'音声が検出されませんでした'};document.getElementById('micst').textContent='⚠️ '+(msg[e.error]||e.error);};
 }
 function startRec(){if(!recog)return;isRec=true;document.getElementById('inp').value='';document.getElementById('micbtn').classList.add('rec');document.getElementById('micbtn').textContent='⏹';document.getElementById('micst').textContent='🔴 話してください...';document.getElementById('micst').classList.add('on');try{recog.start();}catch(e){stopRec();}}
 function stopRec(){isRec=false;document.getElementById('micbtn').classList.remove('rec');document.getElementById('micbtn').textContent='🎤';document.getElementById('micst').textContent='';document.getElementById('micst').classList.remove('on');try{recog.stop();}catch(e){}}
 document.getElementById('micbtn').onclick=async()=>{
   if(!SR){alert('音声入力はSafari・Chrome・Edgeで動作します');return;}
   if(isRec){stopRec();return;}
-  try{
-    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    stream.getTracks().forEach(t=>t.stop());
-    startRec();
-  }catch(e){
-    document.getElementById('micst').textContent='⚠️ マイクを許可してください（設定→Safari→マイク）';
-  }
+  try{const s=await navigator.mediaDevices.getUserMedia({audio:true});s.getTracks().forEach(t=>t.stop());startRec();}
+  catch(e){document.getElementById('micst').textContent='⚠️ マイクを許可してください（設定→Safari→マイク）';}
 };
 
-// Tour
+// Tour / API
 document.getElementById('tourbtn').onclick=()=>{if(!nodes.length)return;if(!apiKey)document.getElementById('apimod').classList.add('show');else startTour();};
 document.getElementById('apiok').onclick=()=>{
   const k=document.getElementById('apiin').value.trim();
   if(!k.startsWith('sk-ant-')){alert('APIキーの形式が正しくありません');return;}
   apiKey=k;localStorage.setItem('brain_api_key',k);updateApiStat();
-  document.getElementById('apimod').classList.remove('show');
-  document.getElementById('apiin').value='';
+  document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';
   startTour();
 };
 document.getElementById('apicx').onclick=()=>{document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';};
 document.getElementById('copyprompt').onclick=()=>{
-  const nodeList=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
-  const linkList=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
+  const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
+  const ll=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
   const obs=nodes.filter(n=>n.type==='障害').map(n=>`・${n.text}`).join('\n');
-  const prompt=`以下は私の思考マップです。全体像を一気通貫の文章で説明した上で、解決の道筋をステップ形式で提示してください。${obs?`\n特に「障害」ノードを乗り越える方法を重点的に。\n\n【障害】\n${obs}`:''}\n\n【思考ノード】\n${nodeList}\n${linkList?`\n【接続関係】\n${linkList}`:''}`;
-  navigator.clipboard.writeText(prompt).then(()=>{const fb=document.getElementById('copyfb');fb.textContent='✅ コピーしました！';setTimeout(()=>{fb.textContent='';},4000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=prompt;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);document.getElementById('copyfb').textContent='✅ コピーしました！';});
+  const p=`以下は私の思考マップです。全体像を一気通貫で説明し、解決の道筋をステップ形式で提示してください。${obs?`\n【障害】\n${obs}`:''}\n\n【思考ノード】\n${nl}\n${ll?`\n【接続】\n${ll}`:''}`;
+  navigator.clipboard.writeText(p).then(()=>{const fb=document.getElementById('copyfb');fb.textContent='✅ コピーしました！';setTimeout(()=>{fb.textContent='';},3000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=p;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);document.getElementById('copyfb').textContent='✅ コピーしました！';});
 };
 
 async function callClaude(prompt){
@@ -480,18 +490,17 @@ async function callClaude(prompt){
   if(!r.ok){const e=await r.json();throw new Error(e.error?.message||`HTTP ${r.status}`);}
   return(await r.json()).content[0].text;
 }
-
 async function startTour(){
   const panel=document.getElementById('tp'),nrEl=document.getElementById('nrtxt'),rsEl=document.getElementById('rstxt');
   panel.classList.add('open');nrEl.textContent='🔍 思考ネットワークを分析中...';nrEl.className='tptxt loading';rsEl.textContent='';
-  const nodeList=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
+  const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
   const obs=nodes.filter(n=>n.type==='障害').map(n=>n.text);
-  const linkList=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
+  const ll=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
   try{
-    const nr=await callClaude(`あなたは思考整理の専門家です。以下の思考マップを読み、全体像を一気通貫で流れのある日本語（400字以内）で説明してください。「障害」タイプは特に触れてください。見出し・番号不要。\n\n【ノード】\n${nodeList}\n${linkList?`\n【接続】\n${linkList}`:''}`);
+    const nr=await callClaude(`思考整理の専門家として、以下の思考マップを400字以内で一気通貫に説明してください。「障害」タイプは特に触れてください。見出し・番号不要。\n\n【ノード】\n${nl}\n${ll?`\n【接続】\n${ll}`:''}`);
     nrEl.textContent=nr;nrEl.className='tptxt';rsEl.textContent='⏳ 解決の道筋を生成中...';
-    const obNote=obs.length?`\n特に以下の「障害」を乗り越える方法を:\n${obs.map(o=>'・'+o).join('\n')}`:'';
-    const rs=await callClaude(`以下の思考の全体像から、具体的な解決ステップを3〜5個で。各ステップは実行可能・簡潔に。最後に「核心的な洞察」を1〜2文で。${obNote}\n\n【思考の全体像】\n${nr}`);
+    const obNote=obs.length?`\n特に以下の障害を乗り越える方法を:\n${obs.map(o=>'・'+o).join('\n')}`:'';
+    const rs=await callClaude(`以下の思考の全体像から、具体的な解決ステップを3〜5個で。最後に「核心的な洞察」を1〜2文で。${obNote}\n\n【全体像】\n${nr}`);
     rsEl.textContent=rs;
   }catch(e){nrEl.className='tptxt';nrEl.textContent=`⚠️ エラー: ${e.message}`;}
 }
