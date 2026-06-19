@@ -6,33 +6,22 @@
 <title>脳内空間</title>
 <style>
 :root{
-  --bg:#000000;
-  --surface:rgba(10,10,18,0.94);
-  --border:rgba(255,255,255,0.06);
-  --border-hi:rgba(255,255,255,0.14);
-  --text:rgba(255,255,255,0.92);
-  --text-sub:rgba(255,255,255,0.38);
-  --text-mute:rgba(255,255,255,0.16);
-  --accent:#7B61FF;
-  --accent-glow:rgba(123,97,255,0.25);
-  --danger:#FF453A;
-  --success:#30D158;
-  --gold:#FF9F0A;
-  --sidebar:320px;
+  --bg:#000;--surface:rgba(10,10,18,.94);--border:rgba(255,255,255,.06);
+  --border-hi:rgba(255,255,255,.14);--text:rgba(255,255,255,.92);
+  --text-sub:rgba(255,255,255,.38);--text-mute:rgba(255,255,255,.16);
+  --accent:#7B61FF;--accent-glow:rgba(123,97,255,.25);
+  --danger:#FF453A;--success:#30D158;--gold:#FF9F0A;--sidebar:320px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Hiragino Sans','Noto Sans JP',system-ui,sans-serif;user-select:none;}
-
 #cv{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;}
 #lyr{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;pointer-events:none;overflow:hidden;}
-.nlb{position:absolute;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.75);text-shadow:0 0 12px rgba(0,0,0,1),0 0 24px rgba(0,0,0,1);white-space:nowrap;pointer-events:none;}
-
+.nlb{position:absolute;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.8);text-shadow:0 0 8px #000,0 0 20px #000;white-space:nowrap;pointer-events:none;}
 #sb{position:absolute;right:0;top:0;bottom:0;width:var(--sidebar);background:var(--surface);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:50;}
 .sb-logo{padding:28px 24px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .sb-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
 .sb-logo h1{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-sub);}
-
 .sb-input{padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .inp-wrap{position:relative;}
 #inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border-hi);border-radius:12px;color:var(--text);font-size:15px;font-family:inherit;padding:12px 46px 12px 14px;resize:none;outline:none;line-height:1.5;-webkit-appearance:none;transition:border-color .2s,background .2s;}
@@ -42,9 +31,8 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 #micbtn:active{transform:scale(.9);}
 #micbtn.rec{background:rgba(255,69,58,.25);color:var(--danger);animation:recpulse 1.2s ease-in-out infinite;}
 @keyframes recpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,58,.4);}50%{box-shadow:0 0 0 8px rgba(255,69,58,0);}}
-#micst{font-size:11px;color:var(--text-sub);margin-top:6px;min-height:16px;letter-spacing:.01em;}
+#micst{font-size:11px;color:var(--text-sub);margin-top:6px;min-height:16px;}
 #micst.on{color:var(--danger);}
-
 .type-row{display:flex;gap:4px;margin-top:10px;}
 .tb{flex:1;padding:6px 0;border-radius:8px;border:1px solid transparent;background:rgba(255,255,255,.04);color:var(--text-mute);font-size:9px;cursor:pointer;text-align:center;font-family:inherit;font-weight:500;letter-spacing:.04em;transition:all .15s;touch-action:manipulation;}
 .tb.on{color:#fff;}
@@ -53,32 +41,28 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .tb[data-t="インサイト"].on{background:rgba(255,159,10,.2);border-color:rgba(255,159,10,.5);}
 .tb[data-t="疑問"].on{background:rgba(255,45,85,.2);border-color:rgba(255,45,85,.5);}
 .tb[data-t="障害"].on{background:rgba(255,69,58,.2);border-color:rgba(255,69,58,.6);}
-
 #addbtn{width:100%;margin-top:10px;padding:13px;background:var(--accent);border:none;border-radius:12px;color:#fff;font-size:14px;font-family:inherit;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:all .15s;touch-action:manipulation;}
 #addbtn:active{opacity:.8;transform:scale(.98);}
-
 .nlist{flex:1;overflow-y:auto;padding:8px 16px;}
 .nlist::-webkit-scrollbar{width:2px;}
 .nlist::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:1px;}
 .ni{padding:10px 12px;margin-bottom:6px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;}
-.ni:active{background:rgba(255,255,255,.06);}
 .ni.sel{border-color:rgba(123,97,255,.5);background:rgba(123,97,255,.08);}
 .ni .ntag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;opacity:.7;}
 .ni .ntxt{font-size:12px;color:rgba(255,255,255,.7);line-height:1.45;}
 .ni .ncon{font-size:10px;color:var(--text-mute);margin-top:3px;}
-
 #tourbtn{margin:6px 16px 4px;padding:14px;background:linear-gradient(135deg,rgba(123,97,255,.8),rgba(59,130,246,.8));border:none;border-radius:14px;color:#fff;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.04em;text-align:center;flex-shrink:0;transition:all .2s;touch-action:manipulation;}
 #tourbtn:active{opacity:.8;transform:scale(.98);}
-#tourbtn:disabled{opacity:.25;cursor:not-allowed;transform:none;}
-
+#tourbtn:disabled{opacity:.25;cursor:not-allowed;}
 .connbtn{margin:0 16px 6px;padding:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:var(--text-sub);font-size:12px;font-family:inherit;cursor:pointer;text-align:center;flex-shrink:0;transition:all .15s;touch-action:manipulation;}
-.connbtn.on{background:var(--accent-glow);border-color:rgba(123,97,255,.4);color:var(--accent);}
-
 .sbinfo{padding:10px 20px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
 .sbinfo span{font-size:11px;color:var(--text-mute);letter-spacing:.04em;}
-#apistat{cursor:pointer;transition:color .15s;}
-#apistat.set{color:var(--success);}
-
+#apistat{cursor:pointer;}#apistat.set{color:var(--success);}
+/* 凡例 */
+#legend{position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;gap:5px;pointer-events:none;z-index:10;}
+.leg{display:flex;align-items:center;gap:7px;font-size:10px;color:rgba(255,255,255,.4);}
+.leg-bar{height:3px;border-radius:2px;}
+/* Tour */
 #tp{position:absolute;left:0;right:var(--sidebar);bottom:0;height:0;background:rgba(6,6,12,.97);border-top:1px solid var(--border);backdrop-filter:blur(30px);z-index:40;overflow:hidden;transition:height .5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;}
 #tp.open{height:52vh;}
 .tph{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
@@ -91,12 +75,12 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .tptxt.loading{color:var(--text-mute);animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
 .restxt{font-size:13px;color:rgba(255,255,255,.8);line-height:1.9;white-space:pre-wrap;}
-.copybtn{font-size:10px;color:var(--text-mute);cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;letter-spacing:.04em;}
-
+.copybtn{font-size:10px;color:var(--text-mute);cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;}
+/* Modal */
 #apimod{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:300;backdrop-filter:blur(20px);}
 #apimod.show{display:flex;}
 .mbox{background:rgba(16,16,26,.98);border:1px solid var(--border-hi);border-radius:20px;padding:32px 28px;width:460px;max-width:94vw;}
-.mbox h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.mbox h3{font-size:18px;font-weight:700;margin-bottom:6px;}
 .mbox p{font-size:12px;color:var(--text-sub);line-height:1.7;margin-bottom:16px;}
 .mbox .divider{display:flex;align-items:center;gap:12px;margin:16px 0;}
 .mbox .divider::before,.mbox .divider::after{content:'';flex:1;height:1px;background:var(--border-hi);}
@@ -109,52 +93,48 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
 .mbtn.s{background:transparent;border-color:var(--border-hi);color:var(--text-sub);}
 .mbtn.copy{width:100%;background:linear-gradient(135deg,rgba(48,209,88,.15),rgba(0,122,255,.15));border:1px solid rgba(48,209,88,.3);color:var(--success);font-size:13px;font-family:inherit;cursor:pointer;font-weight:600;padding:14px;border-radius:12px;}
 #copyfb{font-size:11px;color:var(--success);text-align:center;min-height:18px;margin-top:8px;}
-
+/* Overlays */
 #tip{position:absolute;background:rgba(16,16,26,.96);border:1px solid var(--border-hi);border-radius:12px;padding:10px 14px;max-width:220px;font-size:12px;color:var(--text);pointer-events:none;opacity:0;transition:opacity .15s;z-index:60;line-height:1.6;backdrop-filter:blur(10px);}
 #tip.show{opacity:1;}
-#cnhint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(123,97,255,.2);border:1px solid rgba(123,97,255,.4);border-radius:24px;padding:10px 24px;font-size:12px;color:rgba(123,97,255,.9);pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;backdrop-filter:blur(12px);white-space:nowrap;}
-#cnhint.show{opacity:1;}
-#aitoast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:rgba(16,16,26,.96);border:1px solid rgba(255,159,10,.3);border-radius:28px;padding:11px 22px;font-size:12px;color:var(--gold);pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;backdrop-filter:blur(12px);letter-spacing:.02em;}
+#aitoast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:rgba(16,16,26,.96);border:1px solid rgba(255,159,10,.3);border-radius:28px;padding:11px 22px;font-size:12px;color:var(--gold);pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;backdrop-filter:blur(12px);}
 #aitoast.show{opacity:1;}
-
 #empty{position:absolute;left:0;top:0;width:calc(100vw - var(--sidebar));height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;pointer-events:none;}
 #empty .e-icon{font-size:36px;opacity:.2;}
-#empty p{font-size:13px;color:var(--text-mute);text-align:center;line-height:1.9;font-weight:400;letter-spacing:.02em;}
-
-/* ── MOBILE ── */
+#empty p{font-size:13px;color:var(--text-mute);text-align:center;line-height:1.9;letter-spacing:.02em;}
+/* MOBILE */
 @media(max-width:768px){
   :root{--sidebar:0px;}
-  #cv{width:100vw;height:54vh;}
-  #lyr{width:100vw;height:54vh;}
-  #empty{width:100vw;height:54vh;}
+  #cv{width:100vw;height:54vh;}#lyr{width:100vw;height:54vh;}#empty{width:100vw;height:54vh;}
   #sb{position:fixed;top:54vh;left:0;right:0;bottom:0;width:100%;border-left:none;border-top:1px solid var(--border);overflow-y:auto;-webkit-overflow-scrolling:touch;display:block;}
-  .sb-logo{display:none;}
-  .nlist{display:none;}
+  .sb-logo{display:none;}.nlist{display:none;}
   .sb-input{padding:12px 14px;border-bottom:1px solid var(--border);}
   #inp{font-size:16px;padding:11px 44px 11px 12px;}
   #tourbtn{margin:10px 14px 6px;padding:14px;font-size:13px;display:block;width:calc(100% - 28px);}
   .connbtn{margin:0 14px 6px;padding:10px;display:block;width:calc(100% - 28px);}
   .sbinfo{padding:8px 16px 14px;}
   #micbtn{width:32px;height:32px;font-size:15px;}
-  /* ツアーパネル：フルスクリーンオーバーレイ */
   #tp{position:fixed;left:0;right:0;bottom:0;border-radius:20px 20px 0 0;}
   #tp.open{height:92vh;z-index:200;}
-  .tph{padding:14px 18px 12px;}
-  .tph h2{font-size:13px;}
-  .tpclose{font-size:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
+  .tph{padding:14px 18px 12px;}.tph h2{font-size:13px;}
   .tpbody{flex-direction:column;padding:16px 18px 40px;gap:28px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .tpcol h3{font-size:11px;margin-bottom:8px;}
   .tptxt,.restxt{font-size:15px;line-height:2.0;}
+  #legend{display:none;}
 }
 </style>
 </head>
 <body>
 <canvas id="cv"></canvas>
 <div id="lyr"></div>
-<div id="empty">
-  <div class="e-icon">◉</div>
-  <p>思考を言葉にする。<br>つながりが、突破口になる。</p>
+<div id="empty"><div class="e-icon">◉</div><p>思考を言葉にする。<br>つながりが、突破口になる。</p></div>
+
+<!-- 凡例 -->
+<div id="legend">
+  <div class="leg"><div class="leg-bar" style="width:28px;background:#FFD700;opacity:.9"></div>類似（太＝強い）</div>
+  <div class="leg"><div class="leg-bar" style="width:28px;background:#30D158;opacity:.9"></div>流動性（太＝高い）</div>
+  <div class="leg"><div class="leg-bar" style="width:12px;background:#B4A0FF;opacity:.7"></div>弱い関連</div>
 </div>
+
 <div id="sb">
   <div class="sb-logo"><div class="dot"></div><h1>脳内空間</h1></div>
   <div class="sb-input">
@@ -174,14 +154,10 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   </div>
   <div class="nlist" id="nlist"></div>
   <button id="tourbtn">✦ AIで思考を解き明かす</button>
-  <button class="connbtn" id="connbtn">接続モード</button>
   <button class="connbtn" id="resetbtn" style="color:rgba(255,69,58,.6);border-color:rgba(255,69,58,.2);">思考をリセット</button>
-  <div class="sbinfo">
-    <span id="nc">— 思考</span>
-    <span id="lc">— 接続</span>
-    <span id="apistat">API 未設定</span>
-  </div>
+  <div class="sbinfo"><span id="nc">— 思考</span><span id="lc">— 接続</span><span id="apistat">API 未設定</span></div>
 </div>
+
 <div id="tp">
   <div class="tph"><h2>思考ツアー</h2><button class="tpclose" id="tpclose">×</button></div>
   <div class="tpbody">
@@ -190,7 +166,6 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
   </div>
 </div>
 <div id="tip"></div>
-<div id="cnhint">ノードをタップして接続元を選択</div>
 <div id="aitoast"></div>
 <div id="apimod">
   <div class="mbox">
@@ -200,12 +175,9 @@ body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Disp
     <div id="copyfb"></div>
     <p style="margin-top:10px;font-size:11px;">コピー後、CoworkのClaudeチャットに貼り付けるとAIが分析します。</p>
     <div class="divider"><span>または</span></div>
-    <p style="margin-bottom:10px;">Anthropic APIキーを入力すると、アプリ内で直接分析できます。一度入力すると保存されます。</p>
+    <p style="margin-bottom:10px;">Anthropic APIキーを入力すると、アプリ内で直接分析できます。</p>
     <input type="password" id="apiin" placeholder="sk-ant-api03-...">
-    <div class="mbtns">
-      <button class="mbtn p" id="apiok">このキーで分析する</button>
-      <button class="mbtn s" id="apicx">キャンセル</button>
-    </div>
+    <div class="mbtns"><button class="mbtn p" id="apiok">このキーで分析する</button><button class="mbtn s" id="apicx">キャンセル</button></div>
   </div>
 </div>
 
@@ -215,13 +187,12 @@ const isMobile=()=>window.innerWidth<=768;
 const W=()=>isMobile()?window.innerWidth:window.innerWidth-320;
 const H=()=>isMobile()?window.innerHeight*0.54:window.innerHeight;
 
-/* Mobile keyboard */
 if(isMobile()&&window.visualViewport){
   const sb=document.getElementById('sb');
   const sync=()=>{const vv=window.visualViewport;sb.style.top=(vv.height*0.54+vv.offsetTop)+'px';sb.style.bottom='0';};
   window.visualViewport.addEventListener('resize',sync);
   window.visualViewport.addEventListener('scroll',sync);
-  document.getElementById('inp').addEventListener('blur',()=>{setTimeout(()=>{const sb=document.getElementById('sb');sb.style.top='54vh';sb.style.bottom='0';},250);});
+  document.getElementById('inp').addEventListener('blur',()=>{setTimeout(()=>{document.getElementById('sb').style.top='54vh';document.getElementById('sb').style.bottom='0';},250);});
 }
 
 const TYPES={
@@ -232,39 +203,39 @@ const TYPES={
   '障害':     {hex:0xFF453A,css:'#FF453A',em:0x3d0800},
 };
 
-let nodes=[],links=[],idCtr=0,selIds=[],connMode=false,af=0,pf=0;
+let nodes=[],links=[],idCtr=0,selIds=[],af=0,pf=0;
 let apiKey=localStorage.getItem('brain_api_key')||null;
 
 function updateApiStat(){const el=document.getElementById('apistat');if(apiKey){el.textContent='API 設定済み';el.className='set';}else{el.textContent='API 未設定';el.className='';}}
 updateApiStat();
 document.getElementById('apistat').onclick=()=>{if(apiKey){if(confirm('APIキーをリセットしますか？')){apiKey=null;localStorage.removeItem('brain_api_key');updateApiStat();}}else document.getElementById('apimod').classList.add('show');};
 
-/* Three.js */
+/* ── Three.js setup ── */
 const cv=document.getElementById('cv');
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2.5));
-renderer.setSize(W(),H());
-renderer.setClearColor(0x000000);
+renderer.setSize(W(),H());renderer.setClearColor(0x000000);
 const scene=new THREE.Scene();
-scene.fog=new THREE.FogExp2(0x000000,0.0012);
+scene.fog=new THREE.FogExp2(0x000000,0.0009);
 const camera=new THREE.PerspectiveCamera(55,W()/H(),1,5000);
-let camTheta=0.4,camPhi=1.1,camR=500;
+let camTheta=0.4,camPhi=1.1,camR=520;
 function posCamera(){camera.position.set(camR*Math.sin(camPhi)*Math.cos(camTheta),camR*Math.cos(camPhi),camR*Math.sin(camPhi)*Math.sin(camTheta));camera.lookAt(0,0,0);}
 posCamera();
 scene.add(new THREE.AmbientLight(0x0a0818,3));
 const pl1=new THREE.PointLight(0x7B61FF,4,1000);pl1.position.set(300,200,100);scene.add(pl1);
 const pl2=new THREE.PointLight(0x1e3a8a,3,800);pl2.position.set(-250,-100,250);scene.add(pl2);
 const pl3=new THREE.PointLight(0x4c0519,2.5,600);pl3.position.set(0,-300,-200);scene.add(pl3);
-{const N=3000,pos=new Float32Array(N*3);for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:1.3,transparent:true,opacity:.55,sizeAttenuation:false})));}
+{const N=3000,pos=new Float32Array(N*3);for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*3000;pos[i*3+1]=(Math.random()-.5)*3000;pos[i*3+2]=(Math.random()-.5)*3000;}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:1.3,transparent:true,opacity:.4,sizeAttenuation:false})));}
 
-const nodeMeshes=[],linkLines=[],RC=new THREE.Raycaster(),MP=new THREE.Vector2();
+const nodeMeshes=[],linkTubes=[],RC=new THREE.Raycaster(),MP=new THREE.Vector2();
+const AX=new THREE.Vector3(0,1,0);
 function nr(n){return 15+Math.min(n.connections*5,28);}
 
 function mkNode(n){
   const tc=TYPES[n.type]||TYPES['思考'],r=nr(n);
   const core=new THREE.Mesh(new THREE.SphereGeometry(r,32,32),new THREE.MeshPhongMaterial({color:tc.hex,emissive:tc.em,emissiveIntensity:1.2,shininess:120,specular:0xffffff}));
   core.position.set(n.x,n.y,n.z);core.userData.nid=n.id;scene.add(core);
-  const g1Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.12,side:THREE.BackSide});
+  const g1Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.14,side:THREE.BackSide});
   core.add(new THREE.Mesh(new THREE.SphereGeometry(r*2.4,16,16),g1Mat));
   const g2Mat=new THREE.MeshBasicMaterial({color:tc.hex,transparent:true,opacity:.05,side:THREE.BackSide});
   core.add(new THREE.Mesh(new THREE.SphereGeometry(r*3.8,12,12),g2Mat));
@@ -274,48 +245,152 @@ function mkNode(n){
   nodeMeshes.push({id:n.id,core,g1Mat,g2Mat,label:lbl,r,type:n.type});
 }
 
-function mkLink(sId,tId,style='normal'){
-  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(!s||!t)return;
-  const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(s.x,s.y,s.z),new THREE.Vector3(t.x,t.y,t.z)]);
-  /* 流動性ラインは金色で太く目立たせる */
-  const isFlow=style==='flow';
-  const mat=new THREE.LineBasicMaterial({color:isFlow?0xFFD700:0x4a4a7a,transparent:true,opacity:isFlow?.7:.3,linewidth:1});
-  const line=new THREE.Line(geo,mat);scene.add(line);
-  linkLines.push({id:`${sId}_${tId}`,line,geo,mat,src:sId,tgt:tId,style});
+/* ★ チューブで線を描画 — 太さで強度を表現 */
+function tubeRadius(style,score){
+  if(style==='flow')return 1.2+score*2.5;   /* 流動性：1.2〜3.7 */
+  if(style==='similar')return 0.5+score*3.5; /* 類似：0.5〜4.0 */
+  return 0.4;
+}
+function tubeColor(style){
+  if(style==='flow')return 0x30D158;
+  if(style==='similar')return 0xFFD700;
+  return 0xB4A0FF;
+}
+function tubeOpacity(style,score){
+  if(style==='flow')return 0.55+score*0.3;
+  if(style==='similar')return 0.45+score*0.4;
+  return 0.35;
 }
 
+function mkTube(sId,tId,style,score){
+  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(!s||!t)return;
+  const sv=new THREE.Vector3(s.x,s.y,s.z),tv=new THREE.Vector3(t.x,t.y,t.z);
+  const dir=new THREE.Vector3().subVectors(tv,sv);
+  const len=Math.max(dir.length(),0.1);
+  const mid=new THREE.Vector3().addVectors(sv,tv).multiplyScalar(.5);
+  const r=tubeRadius(style,score);
+  /* 本体チューブ */
+  const geo=new THREE.CylinderGeometry(r,r,1,8,1);/* height=1、スケールで伸縮 */
+  const mat=new THREE.MeshBasicMaterial({color:tubeColor(style),transparent:true,opacity:tubeOpacity(style,score),side:THREE.DoubleSide});
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.position.copy(mid);
+  mesh.scale.set(1,len,1);
+  dir.normalize();
+  if(Math.abs(dir.y)<0.9999)mesh.quaternion.setFromUnitVectors(AX,dir);
+  else if(dir.y<0)mesh.quaternion.setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI);
+  scene.add(mesh);
+  /* 強い接続にはアウターグロー（外側の薄いチューブ） */
+  let glow=null;
+  if(score>0.4){
+    const gr=r*2.5;
+    const ggeo=new THREE.CylinderGeometry(gr,gr,1,8,1);
+    const gmat=new THREE.MeshBasicMaterial({color:tubeColor(style),transparent:true,opacity:0.08,side:THREE.DoubleSide});
+    glow=new THREE.Mesh(ggeo,gmat);
+    glow.position.copy(mid);glow.scale.set(1,len,1);glow.quaternion.copy(mesh.quaternion);
+    scene.add(glow);
+  }
+  linkTubes.push({src:sId,tgt:tId,style,score,r,mesh,geo,mat,glow});
+}
+
+/* ★ テキスト類似度（n-gram、APIキー不要） */
+function textSim(a,b){
+  const ng=(s,n)=>{const st=new Set();for(let i=0;i<=s.length-n;i++)st.add(s.slice(i,i+n));return st;};
+  const a1=ng(a,1),a2=ng(a,2),b1=ng(b,1),b2=ng(b,2);
+  const ix=(x,y)=>{let c=0;for(const v of x)if(y.has(v))c++;return c;};
+  const i1=ix(a1,b1),i2=ix(a2,b2);
+  const u1=a1.size+b1.size-i1,u2=a2.size+b2.size-i2;
+  return(u1+u2)>0?(i1+i2*2)/(u1+u2*2):0;
+}
+
+/* ★ 流動性スコア（接続数から算出、0〜1） */
+function flowScore(a,b){
+  return Math.min((a.connections+b.connections)/12,1);
+}
+
+function alreadyLinked(aId,bId){
+  return links.some(l=>(l.src===aId&&l.tgt===bId)||(l.src===bId&&l.tgt===aId));
+}
+
+/* ★ 新ノード追加時：類似テキストと自動接続 */
+const SIM_MIN=0.18;
+function checkSimilarLinks(newNode){
+  let connected=false;
+  for(const n of nodes){
+    if(n.id===newNode.id||alreadyLinked(newNode.id,n.id))continue;
+    const sim=textSim(newNode.text,n.text);
+    if(sim>=SIM_MIN){
+      addAutoLink(newNode.id,n.id,'similar',sim);
+      connected=true;
+    }
+  }
+  return connected;
+}
+
+/* ★ 流動性チェック：接続数3以上の未接続ペアを自動接続 */
+const FLOW_THR=3;
+function checkFlowLinks(){
+  const hi=nodes.filter(n=>n.connections>=FLOW_THR);
+  for(let i=0;i<hi.length;i++){
+    for(let j=i+1;j<hi.length;j++){
+      const a=hi[i],b=hi[j];
+      if(alreadyLinked(a.id,b.id))continue;
+      const fs=flowScore(a,b);
+      addAutoLink(a.id,b.id,'flow',fs);
+      showToast(`✦ 「${a.text.slice(0,8)}」と「${b.text.slice(0,8)}」が流動的に接続されました`);
+    }
+  }
+}
+
+function addAutoLink(sId,tId,style,score){
+  if(alreadyLinked(sId,tId))return;
+  links.push({src:sId,tgt:tId,style,score});
+  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);
+  if(s)s.connections++;if(t)t.connections++;
+  mkTube(sId,tId,style,score);pf=0;
+}
+
+/* ── Physics ── */
 function tick(){
-  if(pf>800)return;pf++;
+  if(pf>900)return;pf++;
   const R=11000,A=0.01,C=0.003,D=0.85,MV=10;
   for(const n of nodes){
     let fx=0,fy=0,fz=0;
     for(const m of nodes){if(n===m)continue;const dx=n.x-m.x,dy=n.y-m.y,dz=n.z-m.z;const d=Math.sqrt(dx*dx+dy*dy+dz*dz+.5);const f=R/(d*d);fx+=f*dx/d;fy+=f*dy/d;fz+=f*dz/d;}
     fx-=n.x*C;fy-=n.y*C;fz-=n.z*C;
-    for(const l of links){if(l.src!==n.id&&l.tgt!==n.id)continue;const oid=l.src===n.id?l.tgt:l.src;const o=nodes.find(x=>x.id===oid);if(!o)continue;const dx=o.x-n.x,dy=o.y-n.y,dz=o.z-n.z;const d=Math.sqrt(dx*dx+dy*dy+dz*dz)+.01;const f=A*(d-150);fx+=f*dx/d;fy+=f*dy/d;fz+=f*dz/d;}
+    for(const l of links){if(l.src!==n.id&&l.tgt!==n.id)continue;const oid=l.src===n.id?l.tgt:l.src;const o=nodes.find(x=>x.id===oid);if(!o)continue;const dx=o.x-n.x,dy=o.y-n.y,dz=o.z-n.z;const d=Math.sqrt(dx*dx+dy*dy+dz*dz)+.01;const f=A*(d-140);fx+=f*dx/d;fy+=f*dy/d;fz+=f*dz/d;}
     const cl=(v,f)=>Math.max(-MV,Math.min(MV,(v+f)*D));n.vx=cl(n.vx,fx);n.vy=cl(n.vy,fy);n.vz=cl(n.vz,fz);n.x+=n.vx;n.y+=n.vy;n.z+=n.vz;
   }
 }
 
-const TV=new THREE.Vector3();
+const TV=new THREE.Vector3(),sv2=new THREE.Vector3(),tv2=new THREE.Vector3(),dv=new THREE.Vector3();
 function syncScene(){
   for(const nm of nodeMeshes){
     const n=nodes.find(x=>x.id===nm.id);if(!n)continue;
     nm.core.position.set(n.x,n.y,n.z);
-    const r=nr(n);
-    if(r!==nm.r){nm.core.geometry.dispose();nm.core.geometry=new THREE.SphereGeometry(r,32,32);nm.r=r;}
+    const r=nr(n);if(r!==nm.r){nm.core.geometry.dispose();nm.core.geometry=new THREE.SphereGeometry(r,32,32);nm.r=r;}
     const sel=selIds.includes(nm.id);
     nm.core.material.emissiveIntensity=sel?2.5:1.2;
     const isObs=nm.type==='障害';
-    nm.g1Mat.opacity=isObs?0.2+0.12*Math.sin(af*.06):sel?0.28:0.12;
-    nm.g2Mat.opacity=isObs?0.08+0.05*Math.sin(af*.06+1):sel?0.1:0.05;
+    nm.g1Mat.opacity=isObs?0.22+0.12*Math.sin(af*.06):sel?0.30:0.14;
+    nm.g2Mat.opacity=isObs?0.08+0.05*Math.sin(af*.06+1):sel?0.10:0.05;
   }
-  for(const ll of linkLines){
-    const s=nodes.find(n=>n.id===ll.src),t=nodes.find(n=>n.id===ll.tgt);if(!s||!t)continue;
-    ll.geo.setFromPoints([new THREE.Vector3(s.x,s.y,s.z),new THREE.Vector3(t.x,t.y,t.z)]);ll.geo.computeBoundingSphere();
-    const hl=selIds.length>0&&(selIds.includes(ll.src)||selIds.includes(ll.tgt));
-    const isFlow=ll.style==='flow';
-    if(!isFlow){ll.mat.opacity=hl?.7:.3;ll.mat.color.setHex(hl?0x7B61FF:0x3a3a6a);}
-    else{/* 流動性ラインはアニメーションで脈打つ */ll.mat.opacity=0.5+0.2*Math.sin(af*.04+ll.src);}
+  /* チューブ位置・回転更新 */
+  for(const lt of linkTubes){
+    const s=nodes.find(n=>n.id===lt.src),t=nodes.find(n=>n.id===lt.tgt);if(!s||!t)continue;
+    sv2.set(s.x,s.y,s.z);tv2.set(t.x,t.y,t.z);
+    dv.subVectors(tv2,sv2);
+    const len=Math.max(dv.length(),0.1);
+    const mid=new THREE.Vector3().addVectors(sv2,tv2).multiplyScalar(.5);
+    lt.mesh.position.copy(mid);lt.mesh.scale.set(1,len,1);
+    dv.normalize();
+    if(Math.abs(dv.y)<0.9999)lt.mesh.quaternion.setFromUnitVectors(AX,dv);
+    else if(dv.y<0)lt.mesh.quaternion.setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI);
+    if(lt.glow){lt.glow.position.copy(mid);lt.glow.scale.set(1,len,1);lt.glow.quaternion.copy(lt.mesh.quaternion);}
+    /* 流動性ラインは脈打つ */
+    if(lt.style==='flow'){const pulse=0.45+0.2*Math.sin(af*.04+lt.src*.2);lt.mat.opacity=pulse;if(lt.glow)lt.glow.mat&&(lt.glow.material.opacity=pulse*.15);}
+    /* 選択時ハイライト */
+    const hl=selIds.length>0&&(selIds.includes(lt.src)||selIds.includes(lt.tgt));
+    if(lt.style!=='flow')lt.mat.opacity=hl?Math.min(tubeOpacity(lt.style,lt.score)*1.8,0.95):tubeOpacity(lt.style,lt.score);
   }
 }
 function syncLabels(){
@@ -329,49 +404,81 @@ function syncLabels(){
   }
 }
 
+/* ── Node management ── */
 function addNodeRaw(text,type){
   const n={id:++idCtr,text:text.trim(),type,x:(Math.random()-.5)*300,y:(Math.random()-.5)*300,z:(Math.random()-.5)*300,vx:0,vy:0,vz:0,connections:0,ts:new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})};
   nodes.push(n);mkNode(n);document.getElementById('empty').style.display='none';return n;
 }
 function addNode(text,type){
   const n=addNodeRaw(text,type);
-  if(selIds.length&&selIds[0]!==n.id)addLink(selIds[0],n.id);
+  /* 類似接続チェック */
+  const connected=checkSimilarLinks(n);
+  /* 類似接続で繋がらなかったが既存ノードがあれば最も近いものに接続 */
+  if(!connected&&nodes.length>1){
+    let best=null,bestSim=-1;
+    for(const m of nodes){if(m.id===n.id)continue;const s=textSim(n.text,m.text);if(s>bestSim){bestSim=s;best=m;}}
+    if(best)addAutoLink(n.id,best.id,'similar',Math.max(bestSim,0.05));
+  }
+  checkFlowLinks();
   pf=0;updateUI();return n;
 }
 
-/* ★ 流動性チェック：接続数3以上の未接続ノードペアを自動で線結び */
-const FLOW_THRESHOLD=3;
-function checkFlowLinks(){
-  const highFlow=nodes.filter(n=>n.connections>=FLOW_THRESHOLD);
-  for(let i=0;i<highFlow.length;i++){
-    for(let j=i+1;j<highFlow.length;j++){
-      const a=highFlow[i],b=highFlow[j];
-      const already=links.find(l=>(l.src===a.id&&l.tgt===b.id)||(l.src===b.id&&l.tgt===a.id));
-      if(!already){
-        links.push({src:a.id,tgt:b.id,style:'flow'});
-        mkLink(a.id,b.id,'flow');
-        showToast(`✦ 「${a.text.slice(0,10)}」と「${b.text.slice(0,10)}」の流動性が高まりました`);
-      }
-    }
-  }
-}
+/* ── Interaction ── */
+let drag=false,dd=0,pmx=0,pmy=0;
+cv.addEventListener('mousedown',e=>{drag=true;dd=0;pmx=e.clientX;pmy=e.clientY;});
+cv.addEventListener('touchstart',e=>{const t=e.touches[0];drag=true;dd=0;pmx=t.clientX;pmy=t.clientY;},{passive:true});
+window.addEventListener('mouseup',()=>{drag=false;});window.addEventListener('touchend',()=>{drag=false;});
+window.addEventListener('mousemove',e=>{
+  if(drag){const dx=e.clientX-pmx,dy=e.clientY-pmy;dd+=Math.abs(dx)+Math.abs(dy);camTheta-=dx*.005;camPhi=Math.max(.12,Math.min(Math.PI-.12,camPhi+dy*.005));pmx=e.clientX;pmy=e.clientY;posCamera();}
+  const rect=cv.getBoundingClientRect();MP.x=((e.clientX-rect.left)/rect.width)*2-1;MP.y=-((e.clientY-rect.top)/rect.height)*2+1;
+  RC.setFromCamera(MP,camera);const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);
+  const tip=document.getElementById('tip');
+  if(hits.length){const nid=hits[0].object.userData.nid;const n=nodes.find(x=>x.id===nid);if(n){const tc=TYPES[n.type]||TYPES['思考'];const conns=links.filter(l=>l.src===n.id||l.tgt===n.id);tip.innerHTML=`<span style="color:${tc.css};font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">${n.type}</span><br><span style="font-size:12px;">${n.text}</span><br><span style="font-size:10px;color:rgba(255,255,255,.3);">接続 ${n.connections}</span>`;tip.style.left=Math.min(e.clientX+18,W()-240)+'px';tip.style.top=Math.min(e.clientY-10,H()-80)+'px';tip.classList.add('show');}}
+  else tip.classList.remove('show');
+});
+window.addEventListener('touchmove',e=>{if(!drag)return;const t=e.touches[0];const dx=t.clientX-pmx,dy=t.clientY-pmy;dd+=Math.abs(dx)+Math.abs(dy);camTheta-=dx*.005;camPhi=Math.max(.12,Math.min(Math.PI-.12,camPhi+dy*.005));pmx=t.clientX;pmy=t.clientY;posCamera();},{passive:true});
+cv.addEventListener('click',e=>{if(dd>8)return;const rect=cv.getBoundingClientRect();MP.x=((e.clientX-rect.left)/rect.width)*2-1;MP.y=-((e.clientY-rect.top)/rect.height)*2+1;RC.setFromCamera(MP,camera);const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);if(hits.length){selIds=selIds.includes(hits[0].object.userData.nid)?[]:[hits[0].object.userData.nid];}else selIds=[];updateUI();});
+cv.addEventListener('touchend',e=>{if(dd>12)return;if(e.changedTouches.length){const t=e.changedTouches[0];const rect=cv.getBoundingClientRect();MP.x=((t.clientX-rect.left)/rect.width)*2-1;MP.y=-((t.clientY-rect.top)/rect.height)*2+1;RC.setFromCamera(MP,camera);const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);if(hits.length){selIds=selIds.includes(hits[0].object.userData.nid)?[]:[hits[0].object.userData.nid];updateUI();}}});
+cv.addEventListener('wheel',e=>{camR=Math.max(80,Math.min(1600,camR+e.deltaY*.6));posCamera();},{passive:true});
 
-function addLink(sId,tId,style='normal'){
-  if(links.find(l=>(l.src===sId&&l.tgt===tId)||(l.src===tId&&l.tgt===sId)))return;
-  links.push({src:sId,tgt:tId,style});
-  const s=nodes.find(n=>n.id===sId),t=nodes.find(n=>n.id===tId);if(s)s.connections++;if(t)t.connections++;
-  mkLink(sId,tId,style);pf=0;
-  checkFlowLinks();      /* 流動性チェック */
-  checkAutoInsight(sId,tId); /* AI インサイト（APIキーある場合のみ） */
-  updateUI();
+function updateUI(){
+  const list=document.getElementById('nlist');list.innerHTML='';
+  [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">${n.connections} 接続</div>`:''}`;d.onclick=()=>{selIds=selIds.includes(n.id)?[]:[n.id];updateUI();};list.appendChild(d);});
+  document.getElementById('nc').textContent=`${nodes.length} 思考`;
+  document.getElementById('lc').textContent=`${links.length} 接続`;
+  document.getElementById('tourbtn').disabled=nodes.length===0;
 }
+document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));b.classList.add('on');});
+document.getElementById('addbtn').onclick=()=>{const txt=document.getElementById('inp').value.trim();if(!txt)return;const t=document.querySelector('.tb.on').dataset.t;addNode(txt,t);document.getElementById('inp').value='';if(isMobile())document.getElementById('inp').blur();};
+document.getElementById('inp').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')document.getElementById('addbtn').click();});
+document.getElementById('tpclose').onclick=()=>document.getElementById('tp').classList.remove('open');
+document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(document.getElementById('nrtxt').textContent);
+document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
+window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
 
-function showToast(msg,duration=3500){
-  const t=document.getElementById('aitoast');t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),duration);
+/* ── Voice ── */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let recog=null,isRec=false;
+if(SR){
+  recog=new SR();recog.lang='ja-JP';recog.continuous=false;recog.interimResults=true;
+  recog.onresult=e=>{let f='',im='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)f+=e.results[i][0].transcript;else im+=e.results[i][0].transcript;}const v=f||im;if(v)document.getElementById('inp').value=v;if(f)stopRec();};
+  recog.onend=()=>stopRec();
+  recog.onerror=e=>{stopRec();const msg={'not-allowed':'マイクを許可してください','service-not-allowed':'設定→Safari→マイクをON','no-speech':'もう一度話してください','network':'ネット接続を確認'};document.getElementById('micst').textContent='⚠ '+(msg[e.error]||e.error);};
 }
+function startRec(){if(!recog||isRec)return;isRec=true;document.getElementById('inp').value='';document.getElementById('micbtn').classList.add('rec');document.getElementById('micbtn').textContent='■';document.getElementById('micst').textContent='● 話してください';document.getElementById('micst').classList.add('on');try{recog.start();}catch(e){stopRec();}}
+function stopRec(){if(!isRec)return;isRec=false;document.getElementById('micbtn').classList.remove('rec');document.getElementById('micbtn').textContent='🎤';document.getElementById('micst').textContent='';document.getElementById('micst').classList.remove('on');try{recog.stop();}catch(e){}}
+const micBtn=document.getElementById('micbtn');
+micBtn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();},{passive:false});
+micBtn.addEventListener('click',e=>{if('ontouchstart' in window)return;if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();});
 
-/* AI Auto-insight（APIキー必要） */
+/* ── Tour / API ── */
+function showToast(msg,dur=3500){const t=document.getElementById('aitoast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
+document.getElementById('tourbtn').onclick=()=>{if(!nodes.length)return;if(!apiKey)document.getElementById('apimod').classList.add('show');else startTour();};
+document.getElementById('apiok').onclick=()=>{const k=document.getElementById('apiin').value.trim();if(!k.startsWith('sk-ant-')){alert('形式が正しくありません');return;}apiKey=k;localStorage.setItem('brain_api_key',k);updateApiStat();document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';startTour();};
+document.getElementById('apicx').onclick=()=>{document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';};
+document.getElementById('copyprompt').onclick=()=>{const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');const ll=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"(${l.style},${Math.round((l.score||0)*100)}%)`:null;}).filter(Boolean).join('\n');const p=`以下は私の思考マップです。全体像を一気通貫で説明し、解決の道筋をステップ形式で提示してください。\n\n【思考ノード】\n${nl}\n${ll?`\n【接続】\n${ll}`:''}`;navigator.clipboard.writeText(p).then(()=>{const fb=document.getElementById('copyfb');fb.textContent='✓ コピーしました';setTimeout(()=>{fb.textContent='';},3000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=p;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);document.getElementById('copyfb').textContent='✓ コピーしました';});};
+async function callClaude(p){const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1200,messages:[{role:'user',content:p}]})});if(!r.ok){const e=await r.json();throw new Error(e.error?.message||`HTTP ${r.status}`);}return(await r.json()).content[0].text;}
+
 let aiCD=false;
 async function checkAutoInsight(sId,tId){
   if(!apiKey||aiCD)return;
@@ -382,123 +489,62 @@ async function checkAutoInsight(sId,tId){
   try{
     const rIds=new Set([sId,tId]);links.forEach(l=>{if(l.src===sId||l.tgt===sId||l.src===tId||l.tgt===tId){rIds.add(l.src);rIds.add(l.tgt);}});
     const desc=[...rIds].map(id=>nodes.find(n=>n.id===id)).filter(Boolean).map(n=>`[${n.type}] ${n.text}`).join('\n');
-    const reason=s.type==='障害'||t.type==='障害'?`「${s.type==='障害'?s.text:t.text}」という障害が接続されました`:`「${s.text}」と「${t.text}」が多重接続されました`;
-    const ins=await callClaude(`思考マップで新接続。\n理由: ${reason}\n関連:\n${desc}\n\n洞察・突破口を1〜2文で。「〜ではないか」形式で。`);
+    const reason=s.type==='障害'||t.type==='障害'?`障害「${s.type==='障害'?s.text:t.text}」が接続されました`:`「${s.text}」と「${t.text}」が多重接続されました`;
+    const ins=await callClaude(`思考マップで新接続。理由: ${reason}\n関連:\n${desc}\n\n洞察・突破口を1〜2文で。「〜ではないか」形式で。`);
     const iN={id:++idCtr,text:ins.slice(0,55),type:'インサイト',x:(s.x+t.x)/2+(Math.random()-.5)*90,y:(s.y+t.y)/2+(Math.random()-.5)*90,z:(s.z+t.z)/2+(Math.random()-.5)*90,vx:0,vy:0,vz:0,connections:0,ts:'✦ 自動'};
-    nodes.push(iN);mkNode(iN);addLink(iN.id,sId);addLink(iN.id,tId);pf=0;updateUI();
+    nodes.push(iN);mkNode(iN);addAutoLink(iN.id,sId,'similar',0.8);addAutoLink(iN.id,tId,'similar',0.8);pf=0;updateUI();
     showToast('✦ 新しいインサイトが生まれました');
-  }catch(e){showToast('接続エラー: '+e.message);}
+  }catch(e){showToast('エラー: '+e.message);}
 }
 
-/* Interaction */
-let drag=false,dd=0,pmx=0,pmy=0;
-cv.addEventListener('mousedown',e=>{drag=true;dd=0;pmx=e.clientX;pmy=e.clientY;});
-cv.addEventListener('touchstart',e=>{const t=e.touches[0];drag=true;dd=0;pmx=t.clientX;pmy=t.clientY;},{passive:true});
-window.addEventListener('mouseup',()=>{drag=false;});
-window.addEventListener('touchend',()=>{drag=false;});
-window.addEventListener('mousemove',e=>{
-  if(drag){const dx=e.clientX-pmx,dy=e.clientY-pmy;dd+=Math.abs(dx)+Math.abs(dy);camTheta-=dx*.005;camPhi=Math.max(.12,Math.min(Math.PI-.12,camPhi+dy*.005));pmx=e.clientX;pmy=e.clientY;posCamera();}
-  const rect=cv.getBoundingClientRect();MP.x=((e.clientX-rect.left)/rect.width)*2-1;MP.y=-((e.clientY-rect.top)/rect.height)*2+1;
-  RC.setFromCamera(MP,camera);
-  const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);
-  const tip=document.getElementById('tip');
-  if(hits.length){const nid=hits[0].object.userData.nid;const n=nodes.find(x=>x.id===nid);if(n){const tc=TYPES[n.type]||TYPES['思考'];tip.innerHTML=`<span style="color:${tc.css};font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">${n.type}</span><br><span style="font-size:12px;">${n.text}</span>`;tip.style.left=Math.min(e.clientX+18,W()-240)+'px';tip.style.top=Math.min(e.clientY-10,H()-80)+'px';tip.classList.add('show');}}
-  else tip.classList.remove('show');
-});
-window.addEventListener('touchmove',e=>{if(!drag)return;const t=e.touches[0];const dx=t.clientX-pmx,dy=t.clientY-pmy;dd+=Math.abs(dx)+Math.abs(dy);camTheta-=dx*.005;camPhi=Math.max(.12,Math.min(Math.PI-.12,camPhi+dy*.005));pmx=t.clientX;pmy=t.clientY;posCamera();},{passive:true});
-cv.addEventListener('click',e=>{if(dd>8)return;const rect=cv.getBoundingClientRect();MP.x=((e.clientX-rect.left)/rect.width)*2-1;MP.y=-((e.clientY-rect.top)/rect.height)*2+1;RC.setFromCamera(MP,camera);const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);if(hits.length)handleClick(hits[0].object.userData.nid);else{selIds=[];updateUI();}});
-cv.addEventListener('touchend',e=>{if(dd>12)return;if(e.changedTouches.length){const t=e.changedTouches[0];const rect=cv.getBoundingClientRect();MP.x=((t.clientX-rect.left)/rect.width)*2-1;MP.y=-((t.clientY-rect.top)/rect.height)*2+1;RC.setFromCamera(MP,camera);const hits=RC.intersectObjects(nodeMeshes.map(m=>m.core),false);if(hits.length)handleClick(hits[0].object.userData.nid);}});
-cv.addEventListener('wheel',e=>{camR=Math.max(80,Math.min(1600,camR+e.deltaY*.6));posCamera();},{passive:true});
-function handleClick(id){if(connMode){if(!selIds.length){selIds=[id];const n=nodes.find(x=>x.id===id);document.getElementById('cnhint').textContent=`「${n?.text?.slice(0,12)}」→ 接続先をタップ`;}else if(selIds[0]!==id){addLink(selIds[0],id);selIds=[];document.getElementById('cnhint').textContent='ノードをタップして接続元を選択';}}else{selIds=selIds.includes(id)?[]:[id];}updateUI();}
-function updateUI(){
-  const list=document.getElementById('nlist');list.innerHTML='';
-  [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">${n.connections} 接続</div>`:''}`;d.onclick=()=>handleClick(n.id);list.appendChild(d);});
-  document.getElementById('nc').textContent=`${nodes.length} 思考`;
-  document.getElementById('lc').textContent=`${links.length} 接続`;
-  document.getElementById('tourbtn').disabled=nodes.length===0;
-}
-document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));b.classList.add('on');});
-document.getElementById('addbtn').onclick=()=>{const txt=document.getElementById('inp').value.trim();if(!txt)return;const t=document.querySelector('.tb.on').dataset.t;addNode(txt,t);document.getElementById('inp').value='';if(isMobile())document.getElementById('inp').blur();};
-document.getElementById('inp').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')document.getElementById('addbtn').click();});
-document.getElementById('connbtn').onclick=()=>{connMode=!connMode;document.getElementById('connbtn').classList.toggle('on',connMode);document.getElementById('cnhint').classList.toggle('show',connMode);if(!connMode){selIds=[];updateUI();}};
-document.getElementById('tpclose').onclick=()=>document.getElementById('tp').classList.remove('open');
-document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(document.getElementById('nrtxt').textContent);
-document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
-window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
-
-/* Voice input */
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let recog=null,isRec=false;
-if(SR){
-  recog=new SR();recog.lang='ja-JP';recog.continuous=false;recog.interimResults=true;
-  recog.onresult=e=>{let final='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript;else interim+=e.results[i][0].transcript;}const v=final||interim;if(v)document.getElementById('inp').value=v;if(final)stopRec();};
-  recog.onend=()=>stopRec();
-  recog.onerror=e=>{stopRec();const msg={'not-allowed':'マイクを許可してください','service-not-allowed':'設定→Safari→マイクをON','no-speech':'もう一度話してください','network':'ネット接続を確認'};document.getElementById('micst').textContent='⚠ '+(msg[e.error]||e.error);};
-}
-function startRec(){if(!recog||isRec)return;isRec=true;document.getElementById('inp').value='';document.getElementById('micbtn').classList.add('rec');document.getElementById('micbtn').textContent='■';document.getElementById('micst').textContent='● 話してください';document.getElementById('micst').classList.add('on');try{recog.start();}catch(e){stopRec();}}
-function stopRec(){if(!isRec)return;isRec=false;document.getElementById('micbtn').classList.remove('rec');document.getElementById('micbtn').textContent='🎤';document.getElementById('micst').textContent='';document.getElementById('micst').classList.remove('on');try{recog.stop();}catch(e){}}
-const micBtn=document.getElementById('micbtn');
-micBtn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();},{passive:false});
-micBtn.addEventListener('click',e=>{if('ontouchstart' in window)return;if(!SR){alert('音声入力はSafari/Chrome/Edgeで動作します');return;}isRec?stopRec():startRec();});
-
-/* Tour / API */
-document.getElementById('tourbtn').onclick=()=>{if(!nodes.length)return;if(!apiKey)document.getElementById('apimod').classList.add('show');else startTour();};
-document.getElementById('apiok').onclick=()=>{const k=document.getElementById('apiin').value.trim();if(!k.startsWith('sk-ant-')){alert('形式が正しくありません');return;}apiKey=k;localStorage.setItem('brain_api_key',k);updateApiStat();document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';startTour();};
-document.getElementById('apicx').onclick=()=>{document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';};
-document.getElementById('copyprompt').onclick=()=>{const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');const ll=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');const obs=nodes.filter(n=>n.type==='障害').map(n=>`・${n.text}`).join('\n');const p=`以下は私の思考マップです。全体像を一気通貫で説明し、解決の道筋をステップ形式で提示してください。${obs?`\n【障害】\n${obs}`:''}\n\n【思考ノード】\n${nl}\n${ll?`\n【接続】\n${ll}`:''}`;navigator.clipboard.writeText(p).then(()=>{const fb=document.getElementById('copyfb');fb.textContent='✓ コピーしました';setTimeout(()=>{fb.textContent='';},3000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=p;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);document.getElementById('copyfb').textContent='✓ コピーしました';});};
-async function callClaude(p){const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1200,messages:[{role:'user',content:p}]})});if(!r.ok){const e=await r.json();throw new Error(e.error?.message||`HTTP ${r.status}`);}return(await r.json()).content[0].text;}
 async function startTour(){
   const panel=document.getElementById('tp'),nrEl=document.getElementById('nrtxt'),rsEl=document.getElementById('rstxt');
   panel.classList.add('open');nrEl.textContent='思考ネットワークを分析中...';nrEl.className='tptxt loading';rsEl.textContent='';
-  const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');const obs=nodes.filter(n=>n.type==='障害').map(n=>n.text);const ll=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
+  const nl=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');const obs=nodes.filter(n=>n.type==='障害').map(n=>n.text);
+  const strongLinks=links.filter(l=>l.score>0.4).map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" ↔ "${t.text}"(強度${Math.round(l.score*100)}%)`:null;}).filter(Boolean).join('\n');
   try{
-    const nr=await callClaude(`思考整理の専門家として、以下の思考マップを400字以内で一気通貫に説明してください。「障害」タイプは特に触れてください。見出し・番号不要。\n\n【ノード】\n${nl}\n${ll?`\n【接続】\n${ll}`:''}`);
+    const nr=await callClaude(`思考整理の専門家として、以下の思考マップを400字以内で一気通貫に説明してください。見出し・番号不要。\n\n【思考】\n${nl}\n${strongLinks?`\n【強い接続】\n${strongLinks}`:''}`);
     nrEl.textContent=nr;nrEl.className='tptxt';rsEl.textContent='解決の道筋を生成中...';
-    const obNote=obs.length?`\n特に以下の障害を乗り越える方法を:\n${obs.map(o=>'・'+o).join('\n')}`:'';
-    const rs=await callClaude(`以下の思考の全体像から、具体的な解決ステップを3〜5個で。最後に「核心的な洞察」を1〜2文で。${obNote}\n\n【全体像】\n${nr}`);
+    const obNote=obs.length?`\n特に以下の障害を乗り越える方法:\n${obs.map(o=>'・'+o).join('\n')}`:'';
+    const rs=await callClaude(`以下の全体像から具体的な解決ステップを3〜5個で。最後に核心的な洞察を1〜2文で。${obNote}\n\n${nr}`);
     rsEl.textContent=rs;
   }catch(e){nrEl.className='tptxt';nrEl.textContent=`エラー: ${e.message}`;}
 }
 
 /* ── 永続化 ── */
-const STORE_KEY='brain_data_v1';
-function saveState(){
-  try{localStorage.setItem(STORE_KEY,JSON.stringify({nodes:nodes.map(n=>({id:n.id,text:n.text,type:n.type,x:n.x,y:n.y,z:n.z,connections:n.connections,ts:n.ts})),links,idCtr}));}catch(e){}
-}
+const STORE_KEY='brain_data_v2';
+function saveState(){try{localStorage.setItem(STORE_KEY,JSON.stringify({nodes:nodes.map(n=>({id:n.id,text:n.text,type:n.type,x:n.x,y:n.y,z:n.z,connections:n.connections,ts:n.ts})),links,idCtr}));}catch(e){}}
 function loadState(){
   try{
-    const raw=localStorage.getItem(STORE_KEY);if(!raw)return;
+    const raw=localStorage.getItem(STORE_KEY)||localStorage.getItem('brain_data_v1');if(!raw)return;
     const data=JSON.parse(raw);if(!data||!Array.isArray(data.nodes))return;
     idCtr=data.idCtr||0;
     data.nodes.forEach(n=>{const node={...n,vx:0,vy:0,vz:0};nodes.push(node);mkNode(node);});
-    data.links.forEach(l=>{links.push(l);mkLink(l.src,l.tgt,l.style||'normal');});
+    data.links.forEach(l=>{links.push(l);mkTube(l.src,l.tgt,l.style||'similar',l.score||0.3);});
     if(nodes.length)document.getElementById('empty').style.display='none';
     pf=0;
   }catch(e){}
 }
 function resetState(){
-  if(!confirm('すべての思考をリセットしますか？この操作は取り消せません。'))return;
+  if(!confirm('すべての思考をリセットしますか？'))return;
   nodeMeshes.forEach(nm=>{scene.remove(nm.core);nm.label.remove();});
-  linkLines.forEach(ll=>scene.remove(ll.line));
-  nodeMeshes.length=0;linkLines.length=0;
-  nodes=[];links=[];idCtr=0;selIds=[];
-  localStorage.removeItem(STORE_KEY);
-  document.getElementById('empty').style.display='flex';
-  updateUI();
+  linkTubes.forEach(lt=>{scene.remove(lt.mesh);if(lt.glow)scene.remove(lt.glow);});
+  nodeMeshes.length=0;linkTubes.length=0;nodes=[];links=[];idCtr=0;selIds=[];
+  localStorage.removeItem(STORE_KEY);localStorage.removeItem('brain_data_v1');
+  document.getElementById('empty').style.display='flex';updateUI();
 }
 const _updateUI=updateUI;
 updateUI=function(){_updateUI();saveState();};
 document.getElementById('resetbtn').onclick=resetState;
 
+/* ── Render loop ── */
 function animate(){
-  requestAnimationFrame(animate);af++;
-  tick();syncScene();syncLabels();
+  requestAnimationFrame(animate);af++;tick();syncScene();syncLabels();
   pl1.position.x=Math.cos(af*.003)*320;pl1.position.z=Math.sin(af*.003)*320;
   pl2.position.x=Math.cos(af*.002+2)*280;pl2.position.z=Math.sin(af*.002+2)*280;
   renderer.render(scene,camera);
 }
-loadState();
-animate();updateUI();
+loadState();animate();updateUI();
 </script>
 </body>
 </html>
