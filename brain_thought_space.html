@@ -13,7 +13,6 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 #lyr{position:absolute;left:0;top:0;width:calc(100vw - 300px);height:100vh;pointer-events:none;overflow:hidden;}
 .nlb{position:absolute;transform:translateX(-50%);font-size:10px;color:rgba(210,200,255,.88);text-shadow:0 0 8px #000,0 0 16px #000;white-space:nowrap;pointer-events:none;}
 
-/* Sidebar */
 #sb{position:absolute;right:0;top:0;bottom:0;width:300px;background:rgba(4,2,14,.97);border-left:1px solid rgba(100,60,200,.4);display:flex;flex-direction:column;z-index:50;}
 .sbh{padding:16px 15px 10px;border-bottom:1px solid rgba(100,60,200,.2);}
 .sbh h1{font-size:11px;font-weight:700;color:#9070ff;letter-spacing:.15em;text-transform:uppercase;}
@@ -59,9 +58,17 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 
 .connbtn{margin:0 13px 5px;padding:7px;background:rgba(12,8,32,.6);border:1px solid rgba(75,48,155,.4);border-radius:8px;color:#606098;font-size:11px;font-family:inherit;cursor:pointer;transition:all .15s;text-align:center;}
 .connbtn.on{background:rgba(75,38,158,.4);border-color:rgba(140,85,255,.65);color:#b090ff;}
-.sbinfo{padding:7px 14px;border-top:1px solid rgba(75,48,155,.15);font-size:9px;color:#2a2a5a;display:flex;justify-content:space-between;}
+.sbinfo{padding:7px 14px;border-top:1px solid rgba(75,48,155,.15);font-size:9px;color:#2a2a5a;display:flex;justify-content:space-between;align-items:center;}
+#apistat{font-size:9px;cursor:pointer;transition:color .15s;}
+#apistat.set{color:#40bb80;}
+#apistat.set:hover{color:#ff8080;}
 
-/* Tour Panel */
+/* Auto-insight toast */
+#aitoast{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);background:rgba(18,10,48,.97);border:1px solid rgba(243,156,18,.6);border-radius:24px;padding:9px 20px;font-size:11px;color:#f39c12;pointer-events:none;opacity:0;transition:opacity .3s;z-index:80;white-space:nowrap;backdrop-filter:blur(10px);}
+#aitoast.show{opacity:1;}
+@keyframes insightPop{0%{transform:scale(.4);opacity:0;}60%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
+.insight-new .mesh{animation:insightPop .6s ease-out forwards;}
+
 #tp{position:absolute;left:0;right:300px;bottom:0;height:0;background:rgba(3,1,12,.97);border-top:1px solid rgba(100,60,200,.45);z-index:40;overflow:hidden;transition:height .45s cubic-bezier(.2,0,.1,1);display:flex;flex-direction:column;}
 #tp.open{height:50vh;}
 .tph{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 8px;border-bottom:1px solid rgba(75,48,155,.2);flex-shrink:0;}
@@ -80,7 +87,6 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 .copybtn{font-size:9px;color:#5050a0;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-left:8px;}
 .copybtn:hover{color:#9080c0;}
 
-/* API Modal */
 #apimod{position:absolute;inset:0;background:rgba(0,0,8,.88);display:none;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(10px);}
 #apimod.show{display:flex;}
 .mbox{background:rgba(6,3,22,.98);border:1px solid rgba(120,80,220,.55);border-radius:16px;padding:28px 30px;width:440px;max-width:92vw;}
@@ -100,13 +106,11 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 .mbtn.copy:hover{background:linear-gradient(135deg,rgba(50,100,190,.8),rgba(40,150,120,.8));}
 #copyfb{font-size:10px;color:#40cc90;text-align:center;min-height:16px;margin-top:6px;}
 
-/* Tooltip */
 #tip{position:absolute;background:rgba(6,3,20,.95);border:1px solid rgba(120,80,220,.5);border-radius:10px;padding:9px 13px;max-width:200px;font-size:11px;color:#e0e0ff;pointer-events:none;opacity:0;transition:opacity .15s;z-index:60;line-height:1.55;}
 #tip.show{opacity:1;}
 #cnhint{position:absolute;bottom:18px;left:calc(50% - 150px);width:300px;background:rgba(75,38,158,.82);border:1px solid rgba(140,90,255,.65);border-radius:20px;padding:8px 20px;font-size:11px;color:#c0a0ff;pointer-events:none;opacity:0;transition:opacity .2s;z-index:60;backdrop-filter:blur(8px);text-align:center;}
 #cnhint.show{opacity:1;}
 
-/* Mobile */
 @media(max-width:768px){
   #cv{width:100vw;height:52vh;}
   #lyr{width:100vw;height:52vh;}
@@ -148,7 +152,11 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
   <div class="nlist" id="nlist"></div>
   <button id="tourbtn">🎯 ツアー — AIで思考を解き明かす</button>
   <button class="connbtn" id="connbtn">🔗 接続モード</button>
-  <div class="sbinfo"><span id="nc">0 思考</span><span id="lc">0 接続</span></div>
+  <div class="sbinfo">
+    <span id="nc">0 思考</span>
+    <span id="lc">0 接続</span>
+    <span id="apistat" title="クリックしてAPIキーをリセット">🔑 未設定</span>
+  </div>
 </div>
 
 <div id="tp">
@@ -170,6 +178,7 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
 
 <div id="tip"></div>
 <div id="cnhint">ノードをクリックして接続元を選択</div>
+<div id="aitoast">✨ 自動インサイトを生成中...</div>
 
 <div id="apimod">
   <div class="mbox">
@@ -179,6 +188,7 @@ body{background:#000510;color:#e0e0ff;font-family:'Hiragino Sans','Noto Sans JP'
     <div id="copyfb"></div>
     <p style="margin-top:10px;font-size:10px;color:#505088;">↑ ボタンを押すと思考データがコピーされます。<br>CoworkのClaudeチャットに貼り付けると、AIが分析します。</p>
     <div class="divider"><span>または APIキーで直接分析</span></div>
+    <p style="font-size:10px;color:#505088;margin-bottom:8px;">一度入力すると次回から自動入力されます。</p>
     <input type="password" id="apiin" placeholder="sk-ant-api03-...">
     <div class="mbtns">
       <button class="mbtn p" id="apiok">APIキーで分析 →</button>
@@ -202,7 +212,21 @@ const TYPES={
   '障害':      {hex:0xe74c3c,css:'#e74c3c',em:0x7a1010},
 };
 
-let nodes=[],links=[],idCtr=0,selIds=[],connMode=false,apiKey=null,physFrames=0,animFrame=0;
+let nodes=[],links=[],idCtr=0,selIds=[],connMode=false,animFrame=0,physFrames=0;
+
+// APIキーはlocalStorageから復元
+let apiKey=localStorage.getItem('brain_api_key')||null;
+updateApiStat();
+
+function updateApiStat(){
+  const el=document.getElementById('apistat');
+  if(apiKey){el.textContent='🔑 設定済み ✓';el.className='set';el.title='クリックしてAPIキーをリセット';}
+  else{el.textContent='🔑 未設定';el.className='';el.title='クリックしてAPIキーを設定';}
+}
+document.getElementById('apistat').onclick=()=>{
+  if(apiKey){if(confirm('APIキーをリセットしますか？')){apiKey=null;localStorage.removeItem('brain_api_key');updateApiStat();}}
+  else document.getElementById('apimod').classList.add('show');
+};
 
 // Three.js
 const cv=document.getElementById('cv');
@@ -294,7 +318,6 @@ function syncLabels(){
   }
 }
 
-// Data ops
 function addNodeRaw(text,type){
   const n={id:++idCtr,text:text.trim(),type,x:(Math.random()-.5)*280,y:(Math.random()-.5)*280,z:(Math.random()-.5)*280,vx:0,vy:0,vz:0,connections:0,ts:new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})};
   nodes.push(n);mkNodeMesh(n);return n;
@@ -310,9 +333,54 @@ function addLink(srcId,tgtId){
   nodes.find(n=>n.id===srcId)&&nodes.find(n=>n.id===srcId).connections++;
   nodes.find(n=>n.id===tgtId)&&nodes.find(n=>n.id===tgtId).connections++;
   mkLinkLine(srcId,tgtId);physFrames=0;updateUI();
+  checkAutoInsight(srcId,tgtId);
 }
 
-// Interaction
+let autoInsightCooldown=false;
+async function checkAutoInsight(srcId,tgtId){
+  if(!apiKey||autoInsightCooldown)return;
+  const src=nodes.find(n=>n.id===srcId),tgt=nodes.find(n=>n.id===tgtId);
+  if(!src||!tgt)return;
+  const cond1=src.connections>=2&&tgt.connections>=2;
+  const cond2=src.type==='障害'||tgt.type==='障害';
+  if(!cond1&&!cond2)return;
+
+  autoInsightCooldown=true;
+  setTimeout(()=>{autoInsightCooldown=false;},15000); // 15秒クールダウン
+
+  const toast=document.getElementById('aitoast');
+  toast.textContent='✨ 自動インサイトを生成中...';
+  toast.classList.add('show');
+
+  try{
+    // 関連ノードを収集（src/tgtとその接続先）
+    const relIds=new Set([srcId,tgtId]);
+    links.forEach(l=>{if(l.src===srcId||l.tgt===srcId||l.src===tgtId||l.tgt===tgtId){relIds.add(l.src);relIds.add(l.tgt);}});
+    const relNodes=[...relIds].map(id=>nodes.find(n=>n.id===id)).filter(Boolean);
+    const nodeDesc=relNodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
+    const reason=cond2?`「${src.type==='障害'?src.text:tgt.text}」という障害が接続されました`:`「${src.text}」と「${tgt.text}」が多重接続されました`;
+
+    const insight=await callClaude(`思考マップで新しい接続が生まれました。\n理由: ${reason}\n\n関連ノード:\n${nodeDesc}\n\nこの接続から生まれる新しい洞察・突破口・アドバイスを、1〜2文で簡潔に日本語で答えてください。「〜ではないか」「〜かもしれない」などの思考を促す形式で。`);
+
+    // midpointに少しランダム偏差を加えてインサイトノードを配置
+    const mx=(src.x+tgt.x)/2+(Math.random()-.5)*80;
+    const my=(src.y+tgt.y)/2+(Math.random()-.5)*80;
+    const mz=(src.z+tgt.z)/2+(Math.random()-.5)*80;
+    const insightNode={id:++idCtr,text:insight.slice(0,60),type:'インサイト',x:mx,y:my,z:mz,vx:0,vy:0,vz:0,connections:0,ts:'✨ 自動'};
+    nodes.push(insightNode);
+    mkNodeMesh(insightNode);
+    addLink(insightNode.id,srcId);
+    addLink(insightNode.id,tgtId);
+    physFrames=0;updateUI();
+
+    toast.textContent='✨ 新しいインサイトが生まれました！';
+    setTimeout(()=>toast.classList.remove('show'),3000);
+  }catch(e){
+    toast.textContent='⚠️ インサイト生成に失敗しました';
+    setTimeout(()=>toast.classList.remove('show'),3000);
+  }
+}
+
 let dragging=false,dragDist=0,prevMX=0,prevMY=0;
 cv.addEventListener('mousedown',e=>{dragging=true;dragDist=0;prevMX=e.clientX;prevMY=e.clientY;});
 cv.addEventListener('touchstart',e=>{const t=e.touches[0];dragging=true;dragDist=0;prevMX=t.clientX;prevMY=t.clientY;},{passive:true});
@@ -353,7 +421,6 @@ function handleNodeClick(id){
   const el=document.querySelector(`.ni[data-id="${id}"]`);if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-// UI
 function updateUI(){
   const list=document.getElementById('nlist');list.innerHTML='';
   [...nodes].reverse().forEach(n=>{const tc=TYPES[n.type]||TYPES['思考'];const d=document.createElement('div');d.className='ni'+(selIds.includes(n.id)?' sel':'');d.dataset.id=n.id;d.innerHTML=`<div class="ntag" style="color:${tc.css}">${n.type}</div><div class="ntxt">${n.text}</div>${n.connections?`<div class="ncon">🔗 ${n.connections}個の接続</div>`:''}`;d.onclick=()=>handleNodeClick(n.id);list.appendChild(d);});
@@ -371,7 +438,7 @@ document.getElementById('copynr').onclick=()=>navigator.clipboard?.writeText(doc
 document.getElementById('copyrs').onclick=()=>navigator.clipboard?.writeText(document.getElementById('rstxt').textContent);
 window.addEventListener('resize',()=>{renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix();});
 
-// Voice input
+// Voice
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let recog=null,isRec=false;
 if(SR){recog=new SR();recog.lang='ja-JP';recog.continuous=false;recog.interimResults=true;recog.onresult=e=>{const txt=Array.from(e.results).map(r=>r[0].transcript).join('');document.getElementById('inp').value=txt;if(e.results[e.results.length-1].isFinal)stopRec();};recog.onend=()=>stopRec();recog.onerror=e=>{stopRec();document.getElementById('micst').textContent='⚠️ '+e.error;};}
@@ -379,10 +446,21 @@ function startRec(){if(!recog)return;isRec=true;document.getElementById('inp').v
 function stopRec(){isRec=false;document.getElementById('micbtn').classList.remove('rec');document.getElementById('micbtn').textContent='🎤';document.getElementById('micst').textContent='';document.getElementById('micst').classList.remove('on');try{recog.stop();}catch(e){}}
 document.getElementById('micbtn').onclick=()=>{if(!SR){alert('音声入力はChrome/Edgeで動作します');return;}isRec?stopRec():startRec();};
 
-// Tour / AI
+// Tour
 document.getElementById('tourbtn').onclick=()=>{if(!nodes.length)return;if(!apiKey)document.getElementById('apimod').classList.add('show');else startTour();};
-document.getElementById('apiok').onclick=()=>{const k=document.getElementById('apiin').value.trim();if(!k.startsWith('sk-ant-')){alert('APIキーの形式が正しくありません');return;}apiKey=k;document.getElementById('apimod').classList.remove('show');startTour();};
-document.getElementById('apicx').onclick=()=>document.getElementById('apimod').classList.remove('show');
+
+document.getElementById('apiok').onclick=()=>{
+  const k=document.getElementById('apiin').value.trim();
+  if(!k.startsWith('sk-ant-')){alert('APIキーの形式が正しくありません');return;}
+  apiKey=k;
+  localStorage.setItem('brain_api_key',k); // 保存！
+  updateApiStat();
+  document.getElementById('apimod').classList.remove('show');
+  document.getElementById('apiin').value='';
+  startTour();
+};
+document.getElementById('apicx').onclick=()=>{document.getElementById('apimod').classList.remove('show');document.getElementById('apiin').value='';};
+
 document.getElementById('copyprompt').onclick=()=>{
   const nodeList=nodes.map(n=>`[${n.type}] ${n.text}`).join('\n');
   const linkList=links.map(l=>{const s=nodes.find(n=>n.id===l.src),t=nodes.find(n=>n.id===l.tgt);return s&&t?`"${s.text}" → "${t.text}"`:null;}).filter(Boolean).join('\n');
@@ -409,10 +487,9 @@ async function startTour(){
     const obNote=obs.length?`\n特に以下の「障害」を乗り越える方法を:\n${obs.map(o=>'・'+o).join('\n')}`:'';
     const rs=await callClaude(`以下の思考の全体像から、具体的な解決ステップを3〜5個で。各ステップは実行可能・簡潔に。最後に「核心的な洞察」を1〜2文で。${obNote}\n\n【思考の全体像】\n${nr}`);
     rsEl.textContent=rs;
-  }catch(e){nrEl.className='tptxt';nrEl.textContent=`⚠️ エラー: ${e.message}\n\nfile://で開いている場合はCORSエラーが発生します。\npython3 -m http.server 8080 を実行後\nhttp://localhost:8080/brain_thought_space.html を開いてください。`;}
+  }catch(e){nrEl.className='tptxt';nrEl.textContent=`⚠️ エラー: ${e.message}`;}
 }
 
-// Render loop
 function animate(){
   requestAnimationFrame(animate);animFrame++;tick();syncScene();syncLabels();
   pl1.position.x=Math.cos(animFrame*.004)*280;pl1.position.z=Math.sin(animFrame*.004)*280;
